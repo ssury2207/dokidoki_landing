@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Blog - DokiDoki | UPSC Answer Writing & EdTech Insights</title>
+    <meta
+      name="title"
+      content="Blog - DokiDoki | UPSC Answer Writing & EdTech Insights"
+    />
+    <meta
+      name="description"
+      content="Read about building DokiDoki, UPSC preparation strategies, automation, and our journey from Firebase to Supabase. Technical insights and UPSC prep advice."
+    />
+    <meta
+      name="keywords"
+      content="DokiDoki blog, UPSC preparation, answer writing, edtech, Firebase to Supabase, GitHub Actions, UPSC automation, social media UPSC"
+    />
+    <meta name="author" content="DokiDoki Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dokidoki.app/blog/" />
+    <meta
+      property="og:title"
+      content="Blog - DokiDoki | UPSC Answer Writing & EdTech Insights"
+    />
+    <meta
+      property="og:description"
+      content="Read about building DokiDoki, UPSC preparation strategies, and technical insights from our team."
+    />
+    <meta property="og:image" content="/dokidoki.png" />
+    <meta property="og:site_name" content="DokiDoki" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="Blog - DokiDoki | UPSC Answer Writing & EdTech Insights"
+    />
+    <meta
+      property="twitter:description"
+      content="Read about building DokiDoki, UPSC preparation strategies, and technical insights from our team."
+    />
+    <meta property="twitter:image" content="/dokidoki.png" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#121212" />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../dokidoki.png" />
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "DokiDoki Blog",
+        "description": "Technical insights and UPSC preparation advice from the DokiDoki team",
+        "url": "https://dokidoki.app/blog/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "DokiDoki",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dokidoki.app/dokidoki.png"
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* Blog-specific navigation */
+      nav .nav-container {
+        justify-content: center;
+      }
+
+      nav .nav-links {
+        margin: 0;
+        gap: 32px;
+      }
+
+      /* Blog-specific styles */
+      .blog-hero {
+        padding: 120px 0 60px;
+        text-align: center;
+      }
+
+      .blog-hero h1 {
+        font-size: 48px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 16px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .blog-hero p {
+        font-size: 16px;
+        color: #a1a1aa;
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+
+      .blog-dropdown-container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .blog-dropdown {
+        width: 100%;
+        padding: 16px 20px;
+        background: rgba(26, 26, 26, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(97, 191, 197, 0.2);
+        border-radius: 12px;
+        color: #e5e5e5;
+        font-size: 16px;
+        font-family: 'Hanken Grotesk', sans-serif;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2361bfc5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        background-size: 20px;
+        padding-right: 50px;
+      }
+
+      .blog-dropdown:hover {
+        border-color: rgba(97, 191, 197, 0.4);
+        background: rgba(26, 26, 26, 0.8);
+      }
+
+      .blog-dropdown:focus {
+        outline: none;
+        border-color: #61bfc5;
+        box-shadow: 0 0 0 3px rgba(97, 191, 197, 0.1);
+      }
+
+      .blog-dropdown option {
+        background: #1a1a1a;
+        color: #e5e5e5;
+        padding: 12px;
+      }
+
+      /* Article styles */
+      .blog-article {
+        display: none;
+        padding: 80px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .blog-article.active {
+        display: block;
+        animation: fadeInUp 0.4s ease forwards;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .article-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(97, 191, 197, 0.15);
+      }
+
+      .article-title {
+        font-size: 42px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 0;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .article-content {
+        max-width: 680px;
+        margin: 0 auto;
+        color: #e5e5e5;
+        font-size: 17px;
+        line-height: 1.7;
+        font-weight: 300;
+      }
+
+      .article-content h2 {
+        font-size: 32px;
+        font-weight: 600;
+        color: #fff;
+        margin: 48px 0 24px;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+
+      .article-content h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+        margin: 36px 0 20px;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+
+      .article-content p {
+        margin-bottom: 24px;
+        color: #e5e5e5;
+      }
+
+      .article-content ul,
+      .article-content ol {
+        margin: 24px 0;
+        padding-left: 24px;
+      }
+
+      .article-content li {
+        margin-bottom: 12px;
+        color: #e5e5e5;
+      }
+
+      .article-content code {
+        background: rgba(97, 191, 197, 0.1);
+        color: #61bfc5;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 15px;
+        font-family: 'Monaco', 'Courier New', monospace;
+      }
+
+      .article-content pre {
+        background: rgba(26, 26, 26, 0.8);
+        border: 1px solid rgba(97, 191, 197, 0.15);
+        border-radius: 12px;
+        padding: 20px;
+        overflow-x: auto;
+        margin: 32px 0;
+      }
+
+      .article-content pre code {
+        background: none;
+        padding: 0;
+      }
+
+      .back-link {
+        display: inline-block;
+        color: #61bfc5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 60px;
+        transition: color 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: #4a9ca2;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav .nav-links {
+          flex-direction: column;
+          gap: 16px;
+          padding: 20px 0;
+        }
+
+        .blog-hero {
+          padding: 100px 0 40px;
+        }
+
+        .blog-hero h1 {
+          font-size: 36px;
+        }
+
+        .article-title {
+          font-size: 32px;
+        }
+
+        .article-content {
+          font-size: 16px;
+        }
+
+        .article-content h2 {
+          font-size: 28px;
+        }
+
+        .article-content h3 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <div class="nav-container">
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#how-it-works">How It Works</a>
+            <a href="../index.html#explore">Explore</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="/blog/">Blog</a>
+            <a href="/posts/">Community</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+      <div class="container">
+        <h1>Blog</h1>
+        <p>Thoughts on building DokiDoki and UPSC preparation</p>
+        <div class="blog-dropdown-container">
+          <select id="blogDropdown" class="blog-dropdown" aria-label="Select a blog post">
+            <option value="">Select a blog post...</option>
+            <option value="why-we-built-dokidoki">Why We Built DokiDoki</option>
+            <option value="why-social-media-fails">Why Reddit and Social Media Won't Work for Your UPSC Preparation</option>
+            <option value="automating-daily-pyqs">Automating Daily UPSC PYQs with GitHub Actions</option>
+            <option value="supabase-migration">Building a Scalable UPSC App: Firebase to Supabase</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Articles -->
+    <div class="container">
+      <!-- Article 1: Why We Built DokiDoki -->
+      <article id="why-we-built-dokidoki" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2024-12-13" />
+        <meta itemprop="dateModified" content="2024-12-13" />
+        <meta itemprop="author" content="DokiDoki Team" />
+
+        <header class="article-header">
+          <h1 class="article-title" itemprop="headline">Why We Built DokiDoki</h1>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>Content coming soon...</p>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+      </article>
+
+      <!-- Article 2: Why Social Media Fails -->
+      <article id="why-social-media-fails" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2024-12-12" />
+        <meta itemprop="dateModified" content="2024-12-12" />
+        <meta itemprop="author" content="DokiDoki Team" />
+
+        <header class="article-header">
+          <h1 class="article-title" itemprop="headline">Why Reddit and Social Media Won't Work for Your UPSC Preparation</h1>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>Content coming soon...</p>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+      </article>
+
+      <!-- Article 3: Automating Daily PYQs -->
+      <article id="automating-daily-pyqs" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2024-12-10" />
+        <meta itemprop="dateModified" content="2024-12-10" />
+        <meta itemprop="author" content="DokiDoki Team" />
+
+        <header class="article-header">
+          <h1 class="article-title" itemprop="headline">Automating Daily UPSC PYQs with GitHub Actions</h1>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>Content coming soon...</p>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+      </article>
+
+      <!-- Article 4: Supabase Migration -->
+      <article id="supabase-migration" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2024-12-08" />
+        <meta itemprop="dateModified" content="2024-12-08" />
+        <meta itemprop="author" content="DokiDoki Team" />
+
+        <header class="article-header">
+          <h1 class="article-title" itemprop="headline">Building a Scalable UPSC App: Firebase to Supabase</h1>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>Content coming soon...</p>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+      </article>
+    </div>
+
+
+    <script>
+      // Blog dropdown functionality
+      const dropdown = document.getElementById('blogDropdown');
+      const articles = document.querySelectorAll('.blog-article');
+
+      dropdown.addEventListener('change', function() {
+        const selectedValue = this.value;
+
+        // Hide all articles
+        articles.forEach(article => {
+          article.classList.remove('active');
+        });
+
+        // Show selected article
+        if (selectedValue) {
+          const selectedArticle = document.getElementById(selectedValue);
+          if (selectedArticle) {
+            selectedArticle.classList.add('active');
+            // Smooth scroll to article
+            setTimeout(() => {
+              selectedArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

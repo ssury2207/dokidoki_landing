@@ -1,3 +1,20 @@
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger?.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+});
+
+// Close menu when clicking a link
+navLinks?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+  });
+});
+
 function scrollToSection(sectionId) {
   document.getElementById(sectionId)?.scrollIntoView({
     behavior: 'smooth',
@@ -5,6 +22,7 @@ function scrollToSection(sectionId) {
   });
 }
 
+// Intersection Observer for scroll animations
 const observer = new IntersectionObserver(
   (entries) =>
     entries.forEach((entry) => {
@@ -21,6 +39,55 @@ document.querySelectorAll('.card, .feature, .screenshot').forEach((el) => {
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
   observer.observe(el);
+});
+
+// Timeline items reveal on scroll
+const timelineObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll('.timeline-item').forEach((item) => {
+  timelineObserver.observe(item);
+});
+
+// Animate progress bars in evaluation card
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.param-fill');
+
+  progressBars.forEach((bar, index) => {
+    const targetWidth = bar.style.width;
+    bar.style.setProperty('--target-width', targetWidth);
+
+    setTimeout(() => {
+      bar.classList.add('animated');
+    }, 1000 + (index * 100));
+  });
+}
+
+// Trigger animation when page loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', animateProgressBars);
+} else {
+  animateProgressBars();
+}
+
+// FAQ Accordion functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const isExpanded = question.getAttribute('aria-expanded') === 'true';
+    const answer = question.nextElementSibling;
+
+    // Toggle current item
+    question.setAttribute('aria-expanded', !isExpanded);
+    answer.classList.toggle('open');
+  });
 });
 
 (function () {

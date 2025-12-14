@@ -3,22 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DokiDoki</title>
+
+    <!-- Primary Meta Tags -->
+    <title>DokiDoki - AI-Powered UPSC Answer Writing & Evaluation App</title>
+    <meta
+      name="title"
+      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation App"
+    />
+    <meta
+      name="description"
+      content="Master UPSC answer writing with AI evaluation. Practice handwritten Mains answers daily, get instant feedback on 5 parameters, and learn from India's most active UPSC community. Build consistency with daily questions."
+    />
+    <meta
+      name="keywords"
+      content="UPSC answer writing, UPSC mains preparation, AI answer evaluation, handwritten answer practice, UPSC daily questions, UPSC answer feedback, civil services preparation, IAS preparation, UPSC community, UPSC consistency, UPSC answer writing app"
+    />
+    <meta name="author" content="DokiDoki" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation"
+    />
+    <meta
+      property="og:description"
+      content="Master UPSC answer writing with AI evaluation. Practice handwritten answers, get instant feedback, and join India's most active UPSC community."
+    />
+    <meta property="og:image" content="/dokidoki.png" />
+    <meta property="og:site_name" content="DokiDoki" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation"
+    />
+    <meta
+      property="twitter:description"
+      content="Master UPSC answer writing with AI evaluation. Practice handwritten answers, get instant feedback, and join India's most active UPSC community."
+    />
+    <meta property="twitter:image" content="/dokidoki.png" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#121212" />
+
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="dokidoki.png" />
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "DokiDoki",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Android",
+        "description": "AI-powered UPSC answer writing and evaluation app. Practice daily Mains questions, upload handwritten answers, and get instant AI feedback on 5 parameters.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "keywords": "UPSC, answer writing, AI evaluation, civil services, IAS preparation, Mains preparation"
+      }
+    </script>
   </head>
   <body>
     <!-- Navigation -->
     <nav>
       <div class="container">
         <div class="nav-container">
-          <div class="logo">
+          <a href="#" class="logo">
             <img src="dokidoki.png" alt="DokiDoki Logo" class="logo-icon" />
             <span class="logo-text">DokiDoki</span>
+          </a>
+          <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="nav-links">
+            <a href="#how-it-works" onclick="scrollToSection('how-it-works'); return false;">How It Works</a>
+            <a href="#explore" onclick="scrollToSection('explore'); return false;">Explore</a>
+            <a href="#faq" onclick="scrollToSection('faq'); return false;">FAQ</a>
+            <a href="/blog/">Blog</a>
+            <a href="/posts/">Community</a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+              target="_blank"
+              rel="noopener"
+              class="nav-cta"
+              >Download</a
+            >
           </div>
         </div>
       </div>
@@ -27,187 +109,383 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <h1>Build Your <span class="hero-highlight">UPSC Streak</span></h1>
-        <p class="hero-subtitle">
-          One question daily. Track progress. Master consistency.
-        </p>
+        <div class="hero-split">
+          <div class="hero-left">
+            <h1>
+              <span class="hero-highlight">Master UPSC Mains</span> Answer
+              Writing
+            </h1>
+            <p class="hero-subtitle">
+              Daily PYQ practice with instant AI feedback and peer reviews.
+              Build consistency, improve scores.
+            </p>
 
-        <div class="demo-card">
-          <div class="demo-header">
-            <div class="demo-title">Today's Challenge</div>
-            <div class="demo-badge">Day 47</div>
-          </div>
-          <div class="demo-question">
-            <div class="question-type">Prelims Question</div>
-            <div class="question-text">
-              Which statement about the Indian Constitution is correct?
+            <a
+              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+              target="_blank"
+              rel="noopener"
+              class="hero-cta"
+              >Start Daily Practice</a
+            >
+
+            <div class="hero-badges">
+              <div class="hero-badge">
+                <span class="badge-icon">📚</span>
+                <span class="badge-text">PYQ</span>
+              </div>
+              <div class="hero-badge">
+                <span class="badge-icon">🤖</span>
+                <span class="badge-text">AI+Peer</span>
+              </div>
+              <div class="hero-badge">
+                <span class="badge-icon">⚡</span>
+                <span class="badge-text">Daily</span>
+              </div>
             </div>
           </div>
-          <div class="demo-footer">
-            <div class="streak-text">🔥 47 days</div>
-            <div class="points-text">+25 points</div>
+
+          <div class="hero-right">
+            <div class="evaluation-card">
+              <div class="eval-header">
+                <div class="eval-title">Community Evaluation</div>
+                <div class="eval-badge">42/50</div>
+              </div>
+
+              <div class="eval-parameters">
+                <div class="eval-param">
+                  <div class="param-label">1. Relevance & Understanding</div>
+                  <div class="param-bar">
+                    <div class="param-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <div class="eval-param">
+                  <div class="param-label">2. Structure & Organization</div>
+                  <div class="param-bar">
+                    <div class="param-fill" style="width: 92%"></div>
+                  </div>
+                </div>
+
+                <div class="eval-param">
+                  <div class="param-label">3. Content Depth & Examples</div>
+                  <div class="param-bar">
+                    <div class="param-fill" style="width: 78%"></div>
+                  </div>
+                </div>
+
+                <div class="eval-param">
+                  <div class="param-label">4. Presentation & Neatness</div>
+                  <div class="param-bar">
+                    <div class="param-fill" style="width: 88%"></div>
+                  </div>
+                </div>
+
+                <div class="eval-param">
+                  <div class="param-label">5. Innovation / Value Addition</div>
+                  <div class="param-bar">
+                    <div class="param-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="eval-footer">
+                <span class="eval-icon">🤖</span>
+                <span class="eval-text">AI + Peer feedback</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Problem -->
-    <section class="section">
+    <!-- How It Works -->
+    <section id="how-it-works" class="section how-it-works">
       <div class="container">
-        <h2 class="section-title">The Challenge</h2>
+        <h2 class="section-title">How It Works</h2>
         <p class="section-subtitle">
-          UPSC preparation struggles most aspirants face
+          Master UPSC answer writing in 4 simple steps
         </p>
 
-        <div class="grid grid-3">
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3 class="card-title">📚 Overwhelming Syllabus</h3>
-            <p class="card-text">
-              Vast curriculum makes daily practice difficult
-            </p>
+        <div class="timeline">
+          <!-- Step 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-number">1</div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Daily PYQ at 1 AM</h3>
+              <p class="timeline-text">
+                One carefully selected question from 10 years of UPSC papers.
+                Wake up, practice, improve.
+              </p>
+              <div class="timeline-features">
+                <span class="timeline-badge">📚 10 Years of PYQs</span>
+                <span class="timeline-badge">🎯 70-80% Pattern Repeat</span>
+              </div>
+              <a href="#" class="timeline-link">Or post your own question →</a>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3 class="card-title">⏰ Inconsistent Study</h3>
-            <p class="card-text">Hard to maintain regular preparation habits</p>
+
+          <!-- Step 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-number">2</div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Write & Upload Your Answer</h3>
+              <p class="timeline-text">
+                Answer on paper like the real exam. Click a photo. Upload in
+                seconds. Add time taken and notes.
+              </p>
+              <div class="timeline-features">
+                <span class="timeline-badge">✍️ Handwritten practice</span>
+                <span class="timeline-badge">📸 Quick upload</span>
+                <span class="timeline-badge">⏱️ Track timing</span>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-icon"></div>
-            <h3 class="card-title">🎯 Retention & Revision Gaps</h3>
-            <p class="card-text">
-              Forgetting concepts due to irregular or ineffective revision
-              cycles.
-            </p>
+
+          <!-- Step 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-number">3</div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Get AI + Peer Feedback</h3>
+              <p class="timeline-text">
+                AI analyzes instantly. Fellow aspirants review your answer. Get
+                scored on 5 parameters: relevance, structure, content,
+                presentation, value.
+              </p>
+              <div class="timeline-features">
+                <span class="timeline-badge">🤖 Instant AI evaluation</span>
+                <span class="timeline-badge">👥 Peer learning</span>
+                <span class="timeline-badge">📊 5-parameter scoring</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-number">4</div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Track Progress & Build Streaks</h3>
+              <p class="timeline-text">
+                Watch your streak grow. Track scores over time. Build the daily
+                habit that leads to UPSC success.
+              </p>
+              <div class="timeline-features">
+                <span class="timeline-badge">🔥 Streak tracking</span>
+                <span class="timeline-badge">📈 Score improvement</span>
+                <span class="timeline-badge">💪 Habit building</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-cta">
+          <a href="#explore" class="timeline-cta-btn">See It In Action</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Section -->
+    <section id="explore" class="section explore-section">
+      <div class="container">
+        <h2 class="section-title">Explore DokiDoki</h2>
+        <p class="section-subtitle">See our app in action, community posts, and expert insights</p>
+
+        <!-- Product Demo -->
+        <div class="subsection">
+          <h3 class="subsection-title">Product Demo</h3>
+          <div class="screenshot-gallery">
+            <div class="screenshot-frame">
+              <img class="slide is-visible" src="0.png" alt="App screen 1" />
+              <img class="slide" src="1.png" alt="App screen 2" />
+              <img class="slide" src="2.png" alt="App screen 3" />
+              <img class="slide" src="3.png" alt="App screen 4" />
+              <img class="slide" src="4.png" alt="App screen 5" />
+            </div>
+          </div>
+          <div class="download-buttons">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+              target="_blank"
+              rel="noopener"
+              class="download-btn android"
+            >
+              Get it on Google Play
+            </a>
+            <span class="download-btn ios disabled">iOS Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- Community Posts -->
+        <div class="subsection">
+          <h3 class="subsection-title">From Our Community</h3>
+          <div class="content-grid">
+            <article class="content-card post-card">
+              <h4 class="card-heading">How to structure Mains answers effectively?</h4>
+              <p class="card-description">Looking for guidance on organizing my thoughts for 15-mark questions...</p>
+              <a href="/posts/" class="card-link">View Discussion →</a>
+            </article>
+
+            <article class="content-card post-card">
+              <h4 class="card-heading">Best approach for current affairs integration?</h4>
+              <p class="card-description">How do you all integrate current affairs into your answer writing practice...</p>
+              <a href="/posts/" class="card-link">View Discussion →</a>
+            </article>
+
+            <article class="content-card post-card">
+              <h4 class="card-heading">Tips for maintaining daily streak?</h4>
+              <p class="card-description">Successfully maintained 45-day streak! Here's what worked for me...</p>
+              <a href="/posts/" class="card-link">View Discussion →</a>
+            </article>
+          </div>
+          <div class="subsection-footer">
+            <a href="/posts/" class="view-all-link">View All Community Posts →</a>
+          </div>
+        </div>
+
+        <!-- Blog -->
+        <div class="subsection">
+          <h3 class="subsection-title">Latest from the Blog</h3>
+          <div class="content-grid">
+            <article class="content-card blog-card">
+              <h4 class="card-heading">Why We Built DokiDoki</h4>
+              <p class="card-description">The story behind building an AI-powered UPSC answer writing app focused on daily practice and habit formation...</p>
+              <a href="/blog/" class="card-link">Read Article →</a>
+            </article>
+
+            <article class="content-card blog-card">
+              <h4 class="card-heading">Why Reddit and Social Media Won't Work for Your UPSC Preparation</h4>
+              <p class="card-description">Understanding why scattered advice and echo chambers can derail your UPSC journey and what works instead...</p>
+              <a href="/blog/" class="card-link">Read Article →</a>
+            </article>
+
+            <article class="content-card blog-card">
+              <h4 class="card-heading">Automating Daily UPSC PYQs with GitHub Actions</h4>
+              <p class="card-description">How we built a system to deliver daily previous year questions at 1 AM using GitHub Actions and push notifications...</p>
+              <a href="/blog/" class="card-link">Read Article →</a>
+            </article>
+          </div>
+          <div class="subsection-footer">
+            <a href="/blog/" class="view-all-link">View All Articles →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Solution -->
-    <section class="section">
+    <!-- FAQ -->
+    <section id="faq" class="section faq-section">
       <div class="container">
-        <h2 class="section-title">Our Solution</h2>
+        <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">
-          Simple daily challenges that build lasting study habits
+          Everything you need to know about DokiDoki
         </p>
 
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">📝</div>
-            <h3 class="feature-title">Daily Questions</h3>
-            <p class="feature-text">One Prelims or Mains question every day</p>
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How does AI evaluate handwritten UPSC answers?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Our AI feature uses existing LLM model to read your handwritten
+                answers. It then evaluates them on 5 key parameters: relevance &
+                understanding, structure & organization, content depth &
+                examples, presentation & neatness, and innovation/value
+                addition. You get instant, detailed feedback just like UPSC
+                examiners provide, helping you improve with every answer.
+              </p>
+            </div>
           </div>
-          <div class="feature">
-            <div class="feature-icon">🔥</div>
-            <h3 class="feature-title">Streak Tracking</h3>
-            <p class="feature-text">
-              Visual progress that motivates consistency
-            </p>
-          </div>
-          <!-- <div class="feature">
-            <div class="feature-icon">👥</div>
-            <h3 class="feature-title">Peer Reviews</h3>
-            <p class="feature-text">Get your Mains answers reviewed by peers</p>
-          </div> -->
-          <div class="feature">
-            <div class="feature-icon">🏆</div>
-            <h3 class="feature-title">Gamified Learning</h3>
-            <p class="feature-text">Earn points</p>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">📋</div>
-            <h3 class="feature-title">Quality Content</h3>
-            <p class="feature-text">
-              Expert-curated questions with detailed explanations
-            </p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">🔔</div>
-            <h3 class="feature-title">Smart Reminders</h3>
-            <p class="feature-text">
-              Never miss a day with personalized notifications
-            </p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">💡</div>
-            <h3 class="feature-title">Instant Feedback</h3>
-            <p class="feature-text">
-              Get immediate answers with comprehensive explanations
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Screenshots (simple responsive looping images with subtle glow) -->
-    <section id="screenshots" class="section">
-      <div class="container">
-        <h2 class="section-title">Product Glimpse</h2>
-        <p class="section-subtitle">The DokiDoki experience, simplified</p>
-
-        <div class="screenshot-gallery">
-          <div class="screenshot-frame">
-            <!-- Add or remove slides as needed -->
-            <img class="slide is-visible" src="0.png" alt="App screen 1" />
-            <img class="slide" src="1.png" alt="App screen 2" />
-            <img class="slide" src="2.png" alt="App screen 3" />
-            <img class="slide" src="3.png" alt="App screen 4" />
-            <img class="slide" src="4.png" alt="App screen 5" />
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span
+                >Why are PYQs (Previous Year Questions) important for UPSC
+                Mains?</span
+              >
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                UPSC repeats 70-80% of themes and question patterns across
+                years. Our database of 10 years of PYQs helps you identify
+                high-yield topics, understand question types, and practice what
+                UPSC actually tests. Instead of chasing endless current affairs,
+                PYQs show you exactly what matters for the exam.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div
-          class="download-buttons"
-          style="margin-top: 32px; text-align: center"
-        >
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener"
-            class="download-btn android"
-          >
-            Get it on Google Play
-          </a>
-          <a href="#" target="_blank" rel="noopener" class="download-btn ios">
-            Download on the App Store
-          </a>
-        </div>
-      </div>
-    </section>
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I practice both daily PYQs and my own questions?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes! You get one curated PYQ daily at 1 AM for consistent
+                practice. You can also upload your own questions anytime—whether
+                from mock tests, coaching material, or personal study. Both get
+                the same AI + peer evaluation, giving you complete flexibility
+                in your preparation.
+              </p>
+            </div>
+          </div>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">About</h2>
-        <div class="about-content">
-          <p class="about-text">
-            We're developers who understand UPSC preparation challenges. Our
-            goal is simple: make daily practice effortless and engaging.
-          </p>
-          <p class="about-text">
-            Small consistent actions build lasting habits. One question daily
-            creates the foundation for UPSC success.
-          </p>
-        </div>
-      </div>
-    </section>
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span
+                >What are the 5 parameters used to evaluate UPSC answers?</span
+              >
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Every answer is scored on:
+                <strong>(1) Relevance & Understanding</strong> - Did you address
+                the question? <strong>(2) Structure & Organization</strong> -
+                Clear intro-body-conclusion with logical flow.
+                <strong>(3) Content Depth & Examples</strong> - Facts, data,
+                case studies, current affairs.
+                <strong>(4) Presentation & Neatness</strong> - Handwriting,
+                diagrams, formatting.
+                <strong>(5) Innovation/Value Addition</strong> - Critical
+                thinking, balanced perspective. This mirrors actual UPSC
+                evaluation, preparing you for real exam conditions.
+              </p>
+            </div>
+          </div>
 
-    <!-- Contact -->
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2 class="section-title">Get in Touch</h2>
-        <p class="section-subtitle">
-          Questions or feedback? We'd love to hear from you.
-        </p>
-
-        <div class="contact-email">
-          <span>📧</span>
-          <span>dokidoki.cse@gmail.com</span>
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span
+                >How does peer review help improve UPSC answer writing?</span
+              >
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Fellow UPSC aspirants review your answers alongside AI. They
+                spot presentation issues, suggest better examples, and share
+                diverse perspectives you might miss. Reviewing others' answers
+                also teaches you what works and what doesn't. This community
+                learning accelerates improvement faster than studying alone,
+                just like a coaching classroom—but available 24/7.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -215,7 +493,25 @@
     <!-- Footer -->
     <footer>
       <div class="container">
-        <p class="footer-text">© 2024 UPSC Daily. Built for aspirants.</p>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img src="dokidoki.png" alt="DokiDoki Logo" class="footer-logo" />
+            <h3 class="footer-title">DokiDoki</h3>
+          </div>
+
+          <p class="footer-about">
+            Master UPSC answer writing through consistent daily practice.<br />
+            AI evaluation, peer reviews, and habit tracking—all in one app.
+          </p>
+
+          <a href="mailto:dokidoki.cse@gmail.com" class="footer-email">
+            📧 dokidoki.cse@gmail.com
+          </a>
+
+          <div class="footer-divider"></div>
+
+          <p class="footer-copyright">© 2024 DokiDoki. Built for aspirants.</p>
+        </div>
       </div>
     </footer>
 
