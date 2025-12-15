@@ -93,7 +93,6 @@
             <a href="#explore" onclick="scrollToSection('explore'); return false;">Explore</a>
             <a href="#faq" onclick="scrollToSection('faq'); return false;">FAQ</a>
             <a href="/blog/">Blog</a>
-            <a href="/posts/">Community</a>
             <a
               href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
               target="_blank"
@@ -295,57 +294,85 @@
     <section id="explore" class="section explore-section">
       <div class="container">
         <h2 class="section-title">Explore DokiDoki</h2>
-        <p class="section-subtitle">See our app in action, community posts, and expert insights</p>
+        <p class="section-subtitle">Active community and expert insights from UPSC aspirants</p>
 
-        <!-- Product Demo -->
-        <div class="subsection">
-          <h3 class="subsection-title">Product Demo</h3>
-          <div class="screenshot-gallery">
-            <div class="screenshot-frame">
-              <img class="slide is-visible" src="0.png" alt="App screen 1" />
-              <img class="slide" src="1.png" alt="App screen 2" />
-              <img class="slide" src="2.png" alt="App screen 3" />
-              <img class="slide" src="3.png" alt="App screen 4" />
-              <img class="slide" src="4.png" alt="App screen 5" />
+        <!-- Community Highlights Carousel -->
+        <div class="subsection community-carousel-section">
+          <h3 class="subsection-title">Join UPSC Aspirants</h3>
+          <p class="carousel-subtitle">Active community sharing answers, feedback, and daily progress</p>
+
+          <div class="carousel-container">
+            <button class="carousel-nav carousel-prev" aria-label="Previous slide">‹</button>
+
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="0.png" alt="Community feed with daily questions" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="1.png" alt="Answer evaluation with peer feedback" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="2.png" alt="User profile and streak tracking" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="3.png" alt="Detailed answer analysis" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="4.png" alt="Daily PYQ challenge screen" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="5.png" alt="Answer upload interface" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="6.png" alt="AI feedback and scoring" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="7.png" alt="Community discussions" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="8.png" alt="Progress tracking dashboard" />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="screenshot-card">
+                    <img src="9.png" alt="Streak and achievements" />
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <button class="carousel-nav carousel-next" aria-label="Next slide">›</button>
           </div>
-          <div class="download-buttons">
+
+          <div class="carousel-dots"></div>
+
+          <div class="carousel-cta">
             <a
               href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
               target="_blank"
               rel="noopener"
-              class="download-btn android"
+              class="carousel-download-btn"
             >
-              Get it on Google Play
+              Download App & Join Community
             </a>
-            <span class="download-btn ios disabled">iOS Coming Soon</span>
-          </div>
-        </div>
-
-        <!-- Community Posts -->
-        <div class="subsection">
-          <h3 class="subsection-title">From Our Community</h3>
-          <div class="content-grid">
-            <article class="content-card post-card">
-              <h4 class="card-heading">How to structure Mains answers effectively?</h4>
-              <p class="card-description">Looking for guidance on organizing my thoughts for 15-mark questions...</p>
-              <a href="/posts/" class="card-link">View Discussion →</a>
-            </article>
-
-            <article class="content-card post-card">
-              <h4 class="card-heading">Best approach for current affairs integration?</h4>
-              <p class="card-description">How do you all integrate current affairs into your answer writing practice...</p>
-              <a href="/posts/" class="card-link">View Discussion →</a>
-            </article>
-
-            <article class="content-card post-card">
-              <h4 class="card-heading">Tips for maintaining daily streak?</h4>
-              <p class="card-description">Successfully maintained 45-day streak! Here's what worked for me...</p>
-              <a href="/posts/" class="card-link">View Discussion →</a>
-            </article>
-          </div>
-          <div class="subsection-footer">
-            <a href="/posts/" class="view-all-link">View All Community Posts →</a>
           </div>
         </div>
 
