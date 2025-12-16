@@ -244,6 +244,84 @@
         font-family: 'Monaco', 'Courier New', monospace;
       }
 
+      /* Modern Code Block Styling */
+      .code-block {
+        position: relative;
+        margin: 32px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #1a1a1a;
+        border: 1px solid rgba(97, 191, 197, 0.15);
+      }
+
+      .code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        background: rgba(26, 26, 26, 0.95);
+        border-bottom: 1px solid rgba(97, 191, 197, 0.1);
+      }
+
+      .code-language {
+        font-size: 13px;
+        color: #61bfc5;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: 'Hanken Grotesk', sans-serif;
+      }
+
+      .code-content {
+        padding: 20px;
+        overflow-x: auto;
+        background: #0d0d0d;
+      }
+
+      .code-content pre {
+        margin: 0;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #e5e5e5;
+        font-family: 'Monaco', 'Courier New', monospace;
+      }
+
+      .code-content pre code {
+        background: none;
+        padding: 0;
+        color: #e5e5e5;
+        display: block;
+      }
+
+      /* Syntax highlighting colors */
+      .code-content .keyword { color: #61bfc5; }
+      .code-content .string { color: #98c379; }
+      .code-content .comment { color: #5c6370; font-style: italic; }
+      .code-content .function { color: #e5c07b; }
+      .code-content .number { color: #d19a66; }
+
+      /* Scrollbar styling for code blocks */
+      .code-content::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .code-content::-webkit-scrollbar-track {
+        background: rgba(26, 26, 26, 0.5);
+      }
+
+      .code-content::-webkit-scrollbar-thumb {
+        background: rgba(97, 191, 197, 0.3);
+        border-radius: 4px;
+      }
+
+      .code-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(97, 191, 197, 0.5);
+      }
+
+      /* Legacy pre/code support (for non-code-block usage) */
       .article-content pre {
         background: rgba(26, 26, 26, 0.8);
         border: 1px solid rgba(97, 191, 197, 0.15);
@@ -331,10 +409,11 @@
         <div class="blog-dropdown-container">
           <select id="blogDropdown" class="blog-dropdown" aria-label="Select a blog post">
             <option value="">Select a blog post...</option>
-            <option value="why-we-built-dokidoki">Why We Built DokiDoki</option>
-            <option value="why-social-media-fails">Why Reddit and Social Media Won't Work for Your UPSC Preparation</option>
+            <option value="why-we-built-dokidoki">Why DokiDoki Exists: A Distraction-Free Space for UPSC Answer Writing</option>
+            <option value="why-social-media-fails">Why Reddit and Social Media Won't Help You Clear UPSC</option>
+            <option value="answer-writing-practice">How to Practice UPSC Answer Writing When You Have No One to Evaluate</option>
             <option value="automating-daily-pyqs">Automating Daily UPSC PYQs with GitHub Actions</option>
-            <option value="supabase-migration">Building a Scalable UPSC App: Firebase to Supabase</option>
+            <option value="supabase-migration">Why We Migrated from Firebase to Supabase: A Real Startup Journey</option>
           </select>
         </div>
       </div>
@@ -344,16 +423,179 @@
     <div class="container">
       <!-- Article 1: Why We Built DokiDoki -->
       <article id="why-we-built-dokidoki" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
-        <meta itemprop="datePublished" content="2024-12-13" />
-        <meta itemprop="dateModified" content="2024-12-13" />
+        <meta itemprop="datePublished" content="2025-12-15" />
+        <meta itemprop="dateModified" content="2025-12-15" />
         <meta itemprop="author" content="DokiDoki Team" />
 
         <header class="article-header">
-          <h1 class="article-title" itemprop="headline">Why We Built DokiDoki</h1>
+          <h1 class="article-title" itemprop="headline">Why DokiDoki Exists: A Distraction-Free Space for UPSC Answer Writing</h1>
         </header>
 
         <div class="article-content" itemprop="articleBody">
-          <p>Content coming soon...</p>
+          <p>It's 1 AM. A fresh UPSC Mains question appears on your phone. No notifications. No Reddit threads debating which coaching is best. No 3,000-word rants about how UPSC is a lottery. Just one question. Your question for the day.</p>
+
+          <p>This is DokiDoki. A tool built to solve a specific problem: <strong>UPSC aspirants need to practice answer writing consistently, but most existing resources make that harder, not easier.</strong></p>
+
+          <h2>The Problem: Too Much Noise, Not Enough Practice</h2>
+
+          <p>If you've spent any time on UPSC communities online, especially Reddit, you know the pattern.</p>
+
+          <p>On any given day, r/UPSC consists of roughly:</p>
+          <ul>
+            <li><strong>35-45% doubt clearing and strategy questions</strong> - "How to start for 2026?", "Is my booklist okay?", "How to balance job + prep?"</li>
+            <li><strong>20-30% resource dumps</strong> - PDFs, notes, test series reviews, coaching material debates</li>
+            <li><strong>15-25% experience posts</strong> - Success stories, failure reflections, motivational essays</li>
+            <li><strong>5-10% meta discussions</strong> - Complaints about the sub, UPSC system critiques</li>
+            <li><strong>5-10% rants and low-effort posts</strong> - Burnout venting, memes, "UPSC is unfair" threads</li>
+          </ul>
+
+          <p>Some of this is useful. But most of it is noise.</p>
+
+          <p>You go looking for one answer and end up reading five rants about coaching scams. You search for answer writing tips and get lost in a 200-comment thread debating whether handwriting matters. You open it "just for 10 minutes" and suddenly it's been an hour, and you've learned nothing except that everyone else is also stressed.</p>
+
+          <p><strong>Online UPSC communities aren't study tools. They're procrastination traps disguised as preparation.</strong></p>
+
+          <h2>The Real Problems Aspirants Face</h2>
+
+          <p>Through observation and conversations with aspirants preparing remotely, two core problems emerge:</p>
+
+          <h3>1. Too Much Distraction</h3>
+
+          <p>UPSC preparation doesn't need more content. It needs <strong>less noise</strong>.</p>
+
+          <p>Aspirants don't need 47 different booklists or daily debates about optional subjects. They don't need to read every success story or compare their progress to anonymous strangers on the internet.</p>
+
+          <p>They need a focused, structured space where they can practice without getting derailed.</p>
+
+          <h3>2. Lack of Consistency</h3>
+
+          <p>UPSC is a year-long (or multi-year) marathon. The biggest challenge isn't intelligence or resources. It's <strong>showing up every single day</strong> while managing a job, family responsibilities, and mental health.</p>
+
+          <p>Most people don't fail UPSC because they studied the wrong book. They fail because they couldn't maintain consistent practice over months and years.</p>
+
+          <p>And here's the critical part: <strong>Mains answer writing, the most important skill for clearing UPSC, has almost no feedback loop.</strong></p>
+
+          <p>Aspirants write answers on paper. Maybe they show them to a friend or post them on Reddit hoping someone will comment. Maybe they pay for a test series that gives generic feedback three weeks later. Or maybe they just... hope their writing is good enough and find out nine months later when results are declared.</p>
+
+          <p><strong>The Mains exam is opaque, subjective, and isolating.</strong></p>
+
+          <h2>What's Missing: A Simple, Focused Tool</h2>
+
+          <p>The problem isn't lack of resources. The internet is full of PYQ compilations, answer writing guides, and strategy documents.</p>
+
+          <p>The problem is <strong>environment</strong>.</p>
+
+          <p>Aspirants need a space where:</p>
+          <ul>
+            <li>One question appears daily (no decision fatigue, no overwhelming lists)</li>
+            <li>Practice happens consistently (daily habit, not sporadic bursts)</li>
+            <li>Feedback is immediate (community input, not months-later evaluation)</li>
+            <li>Distractions are eliminated (no rants, no debates, no noise)</li>
+          </ul>
+
+          <p>That's why DokiDoki exists.</p>
+
+          <h2>How DokiDoki Works</h2>
+
+          <p><strong>Daily Challenge</strong><br>
+          At 1 AM every day, one UPSC Mains question is pushed to your phone, curated from 10 years of previous year papers (2014-2023). By the time you wake up, your question is ready. No scrolling. No searching. No decision fatigue.</p>
+
+          <p>You have the full day to attempt it, upload your handwritten answer, and move on.</p>
+
+          <p><strong>Community Feedback</strong><br>
+          When you upload your answer, it becomes a post that other aspirants can see, comment on, and review. The feedback framework is based on five core parameters that align with how UPSC actually evaluates Mains answers:</p>
+
+          <ol>
+            <li><strong>Content</strong> - Factual accuracy and depth</li>
+            <li><strong>Structure</strong> - Introduction, body, conclusion flow</li>
+            <li><strong>Analysis</strong> - Critical thinking and argumentation</li>
+            <li><strong>Language</strong> - Clarity and readability</li>
+            <li><strong>Presentation</strong> - Diagrams, bullet points, neatness</li>
+          </ol>
+
+          <p>This isn't coaching. It's peer learning. Real aspirants giving real feedback to each other, not generic templates or delayed evaluations.</p>
+
+          <p><strong>Custom Practice</strong><br>
+          Don't want to wait for the daily challenge? Upload your own answer on any topic you're practicing. Same community feedback, same evaluation framework.</p>
+
+          <p><strong>Streaks & Consistency</strong><br>
+          DokiDoki tracks your daily practice streak. Not to gamify unnecessarily, but to build the one habit that matters most in UPSC: <strong>showing up every day, even when motivation is low.</strong></p>
+
+          <h2>Why Handwritten Answers?</h2>
+
+          <p>There is a difference between gaining knowledge by reading and using that knowledge to write on paper within a word limit, within a time constraint, and under pressure.</p>
+
+          <p>The actual UPSC Mains exam requires you to write 1,200-word answers by hand in 20 minutes. Most aspirants spend months reading and taking notes but rarely practice the act of writing full answers under timed conditions.</p>
+
+          <p>DokiDoki trains you for the real thing: handwritten answers, uploaded via photo, just like you'll write in the exam hall.</p>
+
+          <h2>What DokiDoki Is Not</h2>
+
+          <p>Let's be clear: <strong>DokiDoki will not guarantee you clear UPSC.</strong></p>
+
+          <p>No app can. No coaching can. Clearing UPSC depends on your effort, your strategy, your optional subject, your DAF, your interview performance, and yes, some luck.</p>
+
+          <p>DokiDoki is not:</p>
+          <ul>
+            <li>A complete preparation platform</li>
+            <li>A magic solution to crack UPSC</li>
+            <li>A replacement for reading, note-making, or current affairs</li>
+            <li>A coaching institute in app form</li>
+          </ul>
+
+          <h2>What DokiDoki Is</h2>
+
+          <p>DokiDoki is a <strong>focused environment</strong> where you can practice the single most important skill for Mains, answer writing, without distractions.</p>
+
+          <ul>
+            <li>No Reddit debates.</li>
+            <li>No coaching spam.</li>
+            <li>No overwhelming booklists.</li>
+            <li>No anxiety-inducing rants.</li>
+          </ul>
+
+          <p>Just questions. Just practice. Just a community of people doing the same thing: writing answers, getting feedback, improving every day.</p>
+
+          <p>It's a tool that does one thing well: <strong>helps you build a consistent answer writing habit in a distraction-free space.</strong></p>
+
+          <h2>Where DokiDoki Is Today</h2>
+
+          <p>The Android app launched a few months ago. The numbers are small but real:</p>
+
+          <ul>
+            <li><strong>100+ downloads</strong></li>
+            <li><strong>~30 active users</strong></li>
+            <li><strong>Multiple posts uploaded daily</strong></li>
+            <li><strong>Community feedback flowing consistently</strong></li>
+          </ul>
+
+          <p>People are building streaks. People are giving thoughtful feedback. People are improving their writing, not because of some magic algorithm, but because they're <strong>practicing consistently in a focused environment.</strong></p>
+
+          <p>It's not viral. It's not hyped. But it's working for the people using it.</p>
+
+          <h2>Who DokiDoki Is For</h2>
+
+          <p>If you're:</p>
+          <ul>
+            <li>Preparing for UPSC while working a full-time job</li>
+            <li>Studying remotely without access to coaching or peer groups</li>
+            <li>Struggling to stay consistent over months of preparation</li>
+            <li>Writing answers in isolation with no feedback</li>
+            <li>Tired of getting lost in online communities that drain focus instead of building it</li>
+          </ul>
+
+          <p>Then DokiDoki might help.</p>
+
+          <p>It's not a revolutionary platform. It's not going to change UPSC preparation forever.</p>
+
+          <p>It's just a cleaner, quieter space to practice.</p>
+
+          <p>And sometimes, that's all you need.</p>
+
+          <hr style="border: none; border-top: 1px solid rgba(97, 191, 197, 0.15); margin: 60px 0;">
+
+          <p><strong>Ready to start your daily writing habit?</strong><br>
+          Download DokiDoki on the Play Store and join a community of aspirants practicing answer writing every single day, without the noise.</p>
         </div>
 
         <a href="../index.html" class="back-link">← Back to Home</a>
@@ -361,25 +603,285 @@
 
       <!-- Article 2: Why Social Media Fails -->
       <article id="why-social-media-fails" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
-        <meta itemprop="datePublished" content="2024-12-12" />
-        <meta itemprop="dateModified" content="2024-12-12" />
+        <meta itemprop="datePublished" content="2025-12-15" />
+        <meta itemprop="dateModified" content="2025-12-15" />
         <meta itemprop="author" content="DokiDoki Team" />
 
         <header class="article-header">
-          <h1 class="article-title" itemprop="headline">Why Reddit and Social Media Won't Work for Your UPSC Preparation</h1>
+          <h1 class="article-title" itemprop="headline">Why Reddit and Social Media Won't Help You Clear UPSC</h1>
         </header>
 
         <div class="article-content" itemprop="articleBody">
-          <p>Content coming soon...</p>
+          <p>You've probably been there. You open Reddit to check one quick doubt about current affairs, and an hour later you're deep in the comments of someone's third attempt failure story, feeling anxious about your own preparation.</p>
+
+          <p>Or you open Instagram for a 5-minute break and end up watching 20 "study with me" reels that make you feel productive without actually doing anything.</p>
+
+          <p>This isn't about willpower. Social media is designed to keep you hooked, and for UPSC aspirants trying to stay focused for months on end, it's one of the biggest silent killers of preparation.</p>
+
+          <h2>The Illusion of Productivity</h2>
+
+          <p>Here's the thing about UPSC-related social media. It <strong>feels</strong> productive.</p>
+
+          <p>When you're scrolling through r/UPSC reading someone's detailed strategy post, your brain registers it as preparation. When you're watching YouTube videos titled "How I cleared UPSC in my first attempt," it feels like you're learning something valuable.</p>
+
+          <p>But there's a huge difference between reading <strong>about</strong> preparation and actually preparing.</p>
+
+          <p>Watching someone else's study routine doesn't make you study. Reading 10 different booklists doesn't help you finish your own syllabus. Debating which optional is better in Reddit comments doesn't improve your answer writing.</p>
+
+          <p>Yet we convince ourselves that staying "updated" on these platforms is part of the process.</p>
+
+          <h2>Why Reddit Specifically Doesn't Work</h2>
+
+          <p>Let's be honest about what r/UPSC actually is.</p>
+
+          <p>On most days, it's a mix of:</p>
+          <ul>
+            <li>People asking the same questions over and over ("Which optional should I choose?", "Is my booklist okay?", "Should I join coaching?")</li>
+            <li>Resource dumps that nobody actually reads</li>
+            <li>Success stories that make you feel inspired for 10 minutes, then anxious for the next 3 hours</li>
+            <li>Failure stories that make you question everything</li>
+            <li>Rants about how unfair UPSC is</li>
+          </ul>
+
+          <p>Some posts are genuinely useful. But finding them requires scrolling through dozens of irrelevant ones. And once you start scrolling, you don't stop.</p>
+
+          <h3>The Rabbit Hole Problem</h3>
+
+          <p>Here's how it usually goes:</p>
+
+          <p>You open Reddit to check one specific thing. Maybe you want to know if a certain test series is worth it. Simple question, right?</p>
+
+          <p>But then you see a post titled "I failed Prelims three times, here's what went wrong." You read it. Makes sense. Then you read the comments. Someone mentions they switched their optional and that helped. Now you're wondering if you should switch yours too.</p>
+
+          <p>You open another tab to research optionals. You find a blog post comparing five different optionals. That leads you to a YouTube video. 45 minutes later, you're watching someone explain their daily routine in excruciating detail, and you've completely forgotten what you originally came to Reddit for.</p>
+
+          <p>This isn't lack of discipline. <strong>This is how these platforms are designed to work.</strong> The algorithm wants you to keep clicking, keep scrolling, keep engaging. Your goals don't matter to it.</p>
+
+          <h2>The Comparison Trap</h2>
+
+          <p>One of the worst things about UPSC social media is the constant comparison.</p>
+
+          <p>Someone posts they've finished their second revision while you're still struggling through your first read. Someone shares their detailed 12-hour study routine while you barely managed 5 hours yesterday. Someone your age (or younger) posts about clearing the exam, and suddenly you feel like you're behind.</p>
+
+          <p>What you don't see is the full picture. You don't see their struggles, their bad days, their failures before success. Social media shows highlights, not reality.</p>
+
+          <p>And for something as long and mentally draining as UPSC preparation, constantly comparing yourself to others creates anxiety that directly hurts your performance.</p>
+
+          <h2>Instagram, YouTube, Telegram: The Same Problems in Different Forms</h2>
+
+          <p><strong>Instagram</strong> is full of aesthetic study setups and motivational content that feels good but does nothing. Watching someone else's productive day doesn't make your day productive.</p>
+
+          <p><strong>YouTube</strong> can be useful for lectures, but it's also a massive time trap. You start with a 15-minute video on Indian polity and end up watching a 2-hour documentary about something completely unrelated because the algorithm kept suggesting videos.</p>
+
+          <p><strong>Telegram groups</strong> are probably the worst. Hundreds of messages every day, random PDFs dumped without context, people asking the same questions repeatedly, and zero quality control. You feel like you'll miss something important if you don't check it, but checking it wastes an hour and adds nothing useful.</p>
+
+          <h2>What Successful Aspirants Actually Do</h2>
+
+          <p>Here's the pattern: <strong>toppers avoid social media, or use it extremely rarely with strict limits.</strong></p>
+
+          <p>Kanishak Kataria (AIR 1, 2018) completely stopped using social media two months before the exam. Shruti Sharma (AIR 1, 2021) avoided it throughout her preparation. Shubham Kumar (AIR 4, 2020) says it simply: "Stay away from social media. It creates too many distractions."</p>
+
+          <p>Why? Because they understood something important: <strong>UPSC is cleared by doing the work, not by reading about the work.</strong></p>
+
+          <p>Social media helps you feel informed and connected. It doesn't help you write better answers or retain more information.</p>
+
+          <h2>The Real Problem: Social Media Trains Your Brain Wrong</h2>
+
+          <p>Think about what UPSC actually tests.</p>
+
+          <p>It tests your ability to read deeply, think critically, and write structured, well-argued answers under time pressure. It rewards sustained focus, patience, and the ability to work through difficult material without giving up.</p>
+
+          <p>Social media does the opposite.</p>
+
+          <p>It trains you to:</p>
+          <ul>
+            <li>Skim content quickly instead of reading deeply</li>
+            <li>Switch between topics constantly instead of focusing on one thing</li>
+            <li>Consume passively instead of thinking critically</li>
+            <li>Look for quick dopamine hits instead of delayed rewards</li>
+          </ul>
+
+          <p>Every hour you spend on social media actively makes you worse at the skills UPSC requires.</p>
+
+          <p>And that's not an exaggeration. Studies show that simply having your phone nearby, even when it's off, reduces your cognitive performance. The average student checks their phone every 15 minutes, and it takes 20+ minutes to fully refocus after each interruption.</p>
+
+          <p>If you check your phone 6 times during a 3-hour study session, you've basically lost half your study time to distraction and refocusing.</p>
+
+          <h2>Simple Ways to Break the Habit</h2>
+
+          <p>You don't need a 30-day plan or a detailed system. You just need a few simple changes that make social media less accessible.</p>
+
+          <p><strong>Log out of everything.</strong> Don't delete the apps yet, just log out. Having to type your password adds enough friction to break the automatic habit of opening apps without thinking.</p>
+
+          <p><strong>Turn off all notifications.</strong> Every notification is an interruption. Turn them off completely for Reddit, Instagram, YouTube, Telegram, everything.</p>
+
+          <p><strong>Move apps off your home screen.</strong> Put them in a folder on the last page. Out of sight, out of mind. If you have to search for the app to open it, you'll do it less.</p>
+
+          <p><strong>Keep your phone in another room when studying.</strong> Physical distance matters. If your phone isn't within arm's reach, you won't check it as often.</p>
+
+          <p><strong>Set specific times for social media.</strong> Instead of checking it randomly throughout the day, set two 15-minute slots, maybe during lunch and after dinner. That's it.</p>
+
+          <p><strong>Replace the habit.</strong> When you feel the urge to check Reddit or Instagram, do something else instead. Take a 5-minute walk. Stretch. Drink water. Close your eyes for a minute. Anything that breaks the pattern.</p>
+
+          <p>The goal isn't to never use social media again. The goal is to stop using it <strong>compulsively and automatically</strong> throughout the day.</p>
+
+          <h2>What to Do with the Extra Time</h2>
+
+          <p>Once you cut down social media, you'll have 1-2 extra hours every day. Use them for what actually matters:</p>
+
+          <p><strong>Answer writing practice.</strong> Handwritten, timed, just like the real exam. This is the single most important thing you can do for Mains prep, and it's what most people skip because they're too busy scrolling.</p>
+
+          <p><strong>Actual revision.</strong> Going through your notes, testing yourself, identifying gaps. Not watching YouTube videos about revision strategies.</p>
+
+          <p><strong>Reading slowly and carefully.</strong> Not skimming 10 different sources, but reading one good source thoroughly and understanding it deeply.</p>
+
+          <p><strong>Taking care of yourself.</strong> Going for a walk. Exercising. Sleeping properly. Calling family or friends. These aren't distractions from preparation. They're what keeps you sane during a year-long grind.</p>
+
+          <h2>The Hard Truth</h2>
+
+          <p>No one clears UPSC because they found the perfect strategy post on Reddit. No one clears it because they watched the right motivational video on Instagram.</p>
+
+          <p>People clear UPSC because they showed up every day, focused on the work, and didn't get distracted by what everyone else was doing.</p>
+
+          <p>Social media makes that impossible. It scatters your attention, triggers anxiety, and wastes time you can't afford to waste.</p>
+
+          <p>The solution isn't complicated. Log out. Turn off notifications. Keep your phone away. Replace scrolling with actual work.</p>
+
+          <p>That's it. Simple, but not easy. Especially in the beginning.</p>
+
+          <p>But here's the thing: once you experience what it feels like to study for 3 hours straight without checking your phone once, you won't want to go back. Deep focus feels better than scattered distraction. Real progress feels better than the illusion of productivity.</p>
+
+          <p>You don't need to be on Reddit to clear UPSC. You just need to show up and do the work.</p>
+
+          <p><strong>Start today. Log out of one app right now. See how it feels.</strong></p>
         </div>
 
         <a href="../index.html" class="back-link">← Back to Home</a>
       </article>
 
-      <!-- Article 3: Automating Daily PYQs -->
+      <!-- Article 3: Answer Writing Practice -->
+      <article id="answer-writing-practice" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2025-12-15" />
+        <meta itemprop="dateModified" content="2025-12-15" />
+        <meta itemprop="author" content="DokiDoki Team" />
+
+        <header class="article-header">
+          <h1 class="article-title" itemprop="headline">How to Practice UPSC Answer Writing When You Have No One to Evaluate</h1>
+        </header>
+
+        <div class="article-content" itemprop="articleBody">
+          <p>You write an answer. You read it. It looks good to you. You move on.</p>
+
+          <p>A week later, you write another answer. It also looks good. You feel productive.</p>
+
+          <p>But here's the problem: <strong>you have no idea if your answers are actually good or just good enough to fool yourself.</strong></p>
+
+          <p>This is the biggest challenge for UPSC aspirants preparing remotely. You know answer writing is critical for Mains. You know you need to practice. But without feedback, you're essentially writing in an echo chamber.</p>
+
+          <h2>The Feedback Problem</h2>
+
+          <p>Most aspirants face one of these situations:</p>
+
+          <p><strong>Coaching test series:</strong> This is actually the best way to get proper evaluation from experienced evaluators who understand UPSC standards. But if you're preparing remotely without access to coaching, this option isn't available.</p>
+
+          <p><strong>Reddit or Telegram groups:</strong> You post your answer hoping for feedback. You get a few comments like "good handwriting" or "nice attempt," but no one breaks down the actual content, structure, or depth of analysis.</p>
+
+          <p><strong>Self-evaluation:</strong> You try to evaluate your own answer, but you can't be objective. You wrote it, so obviously it makes sense to you. You don't know what you're missing.</p>
+
+          <p>The result? You keep practicing, but you don't actually improve because you don't know what's wrong.</p>
+
+          <h2>Why Answer Writing Practice Matters More Than Reading</h2>
+
+          <p>Here's something most aspirants realize too late: <strong>knowing something and writing about it are completely different skills.</strong></p>
+
+          <p>You can read 10 books on Indian polity and feel confident. But when you sit down to write a 150-word answer on "Discuss the role of the Election Commission in ensuring free and fair elections," suddenly your mind goes blank. Or you write too much. Or you can't structure it properly.</p>
+
+          <p>UPSC Mains is subjective. The same answer can get different marks from different evaluators. But there are clear parameters that good answers follow: Content, Structure, Analysis, Language, and Presentation.</p>
+
+          <p>The only way to get better at writing answers that score well is to <strong>write, get feedback, and write again.</strong> Not once a week. Not when you feel like it. Daily.</p>
+
+          <h2>The Time Constraint You Can't Ignore</h2>
+
+          <p>In the actual UPSC Mains exam, you have roughly <strong>8-12 minutes per answer.</strong> Some questions are 10 marks (150 words), some are 15 marks (250 words). You need to think, structure, and write complete answers in that time.</p>
+
+          <p>Most aspirants practice by taking 30-40 minutes per answer. They think "I'll get faster eventually." But speed without practice doesn't come. When exam day arrives, they can't finish the paper.</p>
+
+          <p>If you're practicing answer writing, set a timer. <strong>15 minutes maximum.</strong> Force yourself to finish within that time. It'll feel rushed at first. That's the point. The exam is rushed.</p>
+
+          <p>The more you practice under time pressure, the faster your brain learns to organize thoughts and write clearly without overthinking.</p>
+
+          <h2>A Better Way to Get Feedback</h2>
+
+          <p>Since self-evaluation doesn't work and coaching isn't accessible for remote aspirants, the solution is <strong>peer evaluation based on structured parameters.</strong></p>
+
+          <p>Instead of vague comments, break evaluation into specific criteria:</p>
+
+          <ol>
+            <li><strong>Content (out of 10):</strong> Is the factual information correct and relevant?</li>
+            <li><strong>Structure (out of 10):</strong> Does it have a clear intro, body, and conclusion?</li>
+            <li><strong>Analysis (out of 10):</strong> Is there critical thinking, or just factual regurgitation?</li>
+            <li><strong>Language (out of 10):</strong> Is it clear and easy to read?</li>
+            <li><strong>Presentation (out of 10):</strong> Are diagrams, bullet points, and formatting used well?</li>
+          </ol>
+
+          <p><strong>Total: 50 marks.</strong></p>
+
+          <p>When multiple people evaluate your answer using the same framework, you get an averaged total score. More importantly, you also get the breakdown of each parameter's average score.</p>
+
+          <p>This tells you exactly where you're weak. If your Structure average is 5/10 but your Content average is 8/10, you know you need to work on how you organize answers, not what you write. If Analysis is consistently low, you know you need to go beyond facts and add critical thinking.</p>
+
+          <p>This kind of structured, averaged feedback from multiple evaluators is more reliable than one person's opinion and far more useful than generic comments.</p>
+
+          <h2>What Writing Daily Actually Does</h2>
+
+          <p>The biggest mistake aspirants make is treating answer writing as something they'll "do later" after finishing the syllabus.</p>
+
+          <p>But here's the reality: <strong>you don't finish the UPSC syllabus. You keep reading until the exam.</strong></p>
+
+          <p>If you wait to start writing until you feel "ready," you'll start 2 months before Mains and realize you have no speed, no structure, and no clarity.</p>
+
+          <p>Writing daily does something reading can't: it forces your brain to retrieve information, organize it, and present it clearly. That's the skill UPSC tests.</p>
+
+          <p>You might feel like you don't know enough to write answers yet. Write anyway. Write bad answers. Get feedback. Write better answers. Repeat.</p>
+
+          <p>That's how improvement happens.</p>
+
+          <h2>Simple Practice Routine</h2>
+
+          <p>You don't need a complex system. Just this:</p>
+
+          <p><strong>1. Pick one PYQ (Previous Year Question) daily.</strong> Preferably from the last 10 years of UPSC Mains papers.</p>
+
+          <p><strong>2. Set a timer for 15 minutes.</strong> Write the answer by hand. No typing. No pausing the timer.</p>
+
+          <p><strong>3. Get feedback.</strong> Either from a peer group, a mentor, or a structured community evaluation system.</p>
+
+          <p><strong>4. Review the feedback and write the same answer again the next day if needed.</strong></p>
+
+          <p>That's it. One question per day. 15 minutes. Feedback. Repeat.</p>
+
+          <p>Do this for 6 months, and you'll have written 180+ answers. Your speed will improve. Your structure will improve. Your clarity will improve.</p>
+
+          <p>Skip this, and no amount of reading will prepare you for the Mains exam.</p>
+
+          <h2>The Bottom Line</h2>
+
+          <p>You can't get better at answer writing by reading about answer writing. You can't get better by writing in isolation without feedback.</p>
+
+          <p>You need to write regularly, under time pressure, and get structured evaluation from people who understand what UPSC actually tests.</p>
+
+          <p>It's not glamorous. It's not easy. But it's the only way.</p>
+
+          <p><strong>Start today. Pick one PYQ. Set a timer for 15 minutes. Write. Get feedback. Repeat tomorrow.</strong></p>
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+      </article>
+
+      <!-- Article 4: Automating Daily PYQs -->
       <article id="automating-daily-pyqs" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
-        <meta itemprop="datePublished" content="2024-12-10" />
-        <meta itemprop="dateModified" content="2024-12-10" />
+        <meta itemprop="datePublished" content="2025-12-15" />
+        <meta itemprop="dateModified" content="2025-12-15" />
         <meta itemprop="author" content="DokiDoki Team" />
 
         <header class="article-header">
@@ -387,24 +889,523 @@
         </header>
 
         <div class="article-content" itemprop="articleBody">
-          <p>Content coming soon...</p>
+          <p>When we started building DokiDoki, one core feature was clear: push one UPSC question to users every day at 1 AM. By the time they wake up, their daily challenge is ready.</p>
+
+          <p>Simple concept. But how do you automate it reliably without overcomplicating the infrastructure?</p>
+
+          <p>We explored a few options and settled on GitHub Actions. Here's why, and how we built it.</p>
+
+          <h2>The Problem</h2>
+
+          <p>Our dataset consists of UPSC Previous Year Questions stored in a database. Each entry has one Prelims question and one Mains question.</p>
+
+          <p>Every day at 1 AM IST, we needed to:</p>
+          <ul>
+            <li>Select a random question from the pool</li>
+            <li>Assign it as the "Daily Challenge" for all users</li>
+            <li>Mark that question as used</li>
+            <li>Send push notifications to all users</li>
+          </ul>
+
+          <h2>Solution Options We Considered</h2>
+
+          <h3>Option 1: Cron Job on a VPS</h3>
+          <p>Run a cron job on a virtual private server at 1 AM daily.</p>
+          <p><strong>Pros:</strong> Full control<br><strong>Cons:</strong> Costs money, need to maintain server uptime</p>
+
+          <h3>Option 2: Firebase Scheduled Functions</h3>
+          <p>Use serverless functions with scheduled triggers.</p>
+          <p><strong>Pros:</strong> No server management<br><strong>Cons:</strong> Requires paid Blaze plan, more complexity than needed</p>
+
+          <h3>Option 3: GitHub Actions (What We Chose)</h3>
+          <p>Use GitHub Actions with a cron schedule to run the script automatically.</p>
+          <p><strong>Pros:</strong> Free, reliable, easy to set up, version-controlled<br><strong>Cons:</strong> None for our use case</p>
+
+          <p>We went with GitHub Actions because it was the simplest solution that met all our requirements without adding infrastructure cost or complexity.</p>
+
+          <h2>Implementation: Two Scripts</h2>
+
+          <h3>Script 1: Question Assignment</h3>
+          <p>Select a random question and assign it as the daily challenge.</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">JavaScript</span>
+            </div>
+            <div class="code-content">
+              <pre><code>async function assignDailyChallenge() {
+  // Fetch all questions where 'is_used_recently' = false
+  const availableQuestions = await db.getAvailableQuestions();
+
+  // Pick a random question
+  const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+  const selectedQuestion = availableQuestions[randomIndex];
+
+  // Mark it as used
+  await db.updateQuestion(selectedQuestion.id, {
+    is_used_recently: true
+  });
+
+  // Set it as today's daily challenge
+  await db.setDailyChallenge(selectedQuestion.id, new Date());
+
+  console.log(`Daily challenge assigned: ${selectedQuestion.id}`);
+}</code></pre>
+            </div>
+          </div>
+
+          <p><strong>Key decisions:</strong></p>
+          <ul>
+            <li>Random selection to keep it unpredictable</li>
+            <li>Mark questions as used to avoid repetition</li>
+            <li>Simple and maintainable</li>
+          </ul>
+
+          <h3>Script 2: Push Notifications</h3>
+          <p>Notify all users that a new daily challenge is available using Expo Push Notification Service.</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">JavaScript</span>
+            </div>
+            <div class="code-content">
+              <pre><code>async function sendPushNotifications() {
+  // Fetch all device tokens from database
+  const users = await db.getAllActiveUsers();
+  const tokens = users.map(user => user.push_token).filter(Boolean);
+
+  // Batch tokens (Expo supports up to 100 per request)
+  const batches = chunkArray(tokens, 100);
+
+  for (const batch of batches) {
+    await expo.sendPushNotificationsAsync({
+      to: batch,
+      sound: 'default',
+      title: 'Your Daily Challenge is Ready!',
+      body: 'A new UPSC question is waiting for you.',
+      data: { type: 'daily_challenge' }
+    });
+  }
+
+  console.log(`Sent notifications to ${tokens.length} users`);
+}</code></pre>
+            </div>
+          </div>
+
+          <p><strong>Why Expo?</strong> Handles both iOS and Android with one API, free tier supports our user base, simple integration.</p>
+
+          <h2>The GitHub Actions Workflow</h2>
+
+          <p>Here's the actual workflow file:</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">YAML</span>
+            </div>
+            <div class="code-content">
+              <pre><code>name: Daily Challenge Assignment
+
+on:
+  schedule:
+    # Runs at 7:30 PM UTC = 1:00 AM IST (UTC + 5:30)
+    - cron: '30 19 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  assign-challenge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run question assignment
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/assignDailyChallenge.js
+
+      - name: Run push notifications
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          EXPO_ACCESS_TOKEN: ${{ secrets.EXPO_ACCESS_TOKEN }}
+        run: node scripts/sendPushNotifications.js</code></pre>
+            </div>
+          </div>
+
+          <h3>Timezone Handling</h3>
+          <p>GitHub Actions runs on UTC. Our target users are in India (IST = UTC + 5:30).</p>
+          <p>To run the script at 1:00 AM IST, we schedule it for 7:30 PM UTC (19:30).</p>
+          <p>Cron expression: <code>30 19 * * *</code></p>
+
+          <h3>Manual Trigger</h3>
+          <p>The <code>workflow_dispatch</code> event allows us to manually trigger the workflow from GitHub's UI. Useful for testing or retrying after failures.</p>
+
+          <h2>Handling Failures</h2>
+
+          <p><strong>Built-in Monitoring:</strong> GitHub Actions sends an email notification if the workflow fails.</p>
+
+          <p><strong>Retry Logic:</strong> If the workflow fails, we:</p>
+          <ol>
+            <li>Check the GitHub Actions logs to identify the error</li>
+            <li>Re-run the workflow manually using <code>workflow_dispatch</code></li>
+            <li>If it fails again, run the script locally to push the question manually</li>
+          </ol>
+
+          <h2>Scalability: Will This Work at 10,000 Users?</h2>
+
+          <p><strong>Yes, easily.</strong></p>
+
+          <p><strong>GitHub Actions:</strong> We run 2 scripts once per day, each taking less than 1 minute. Free tier provides 2,000 minutes/month. We use about 60 minutes/month.</p>
+
+          <p><strong>Expo Push Notifications:</strong> Supports batch sending (100 notifications per API call). 10,000 users = 100 API calls, takes seconds. No bottleneck.</p>
+
+          <p><strong>Database:</strong> 1 write per day for question assignment, 10,000 reads for fetching user tokens. Our database handles this easily.</p>
+
+          <p><strong>When would we need to optimize?</strong> If we cross 50,000-100,000 users, we'd consider using a queue system for parallel notification batching. But for current scale, GitHub Actions is more than sufficient.</p>
+
+          <h2>Why This Approach Works</h2>
+
+          <ul>
+            <li><strong>Simplicity:</strong> No servers to maintain, just two scripts and one workflow file</li>
+            <li><strong>Reliability:</strong> GitHub Actions has 99.9%+ uptime</li>
+            <li><strong>Cost:</strong> $0</li>
+            <li><strong>Maintainability:</strong> Everything is version-controlled</li>
+            <li><strong>Transparency:</strong> All workflow runs are logged</li>
+          </ul>
+
+          <h2>Lessons Learned</h2>
+
+          <ol>
+            <li><strong>Don't over-engineer early.</strong> We almost went with AWS Lambda before realizing GitHub Actions was simpler and free.</li>
+            <li><strong>Timezone handling matters.</strong> Always double-check your cron expressions.</li>
+            <li><strong>Manual triggers are essential.</strong> The <code>workflow_dispatch</code> saved us during testing.</li>
+            <li><strong>Batch notifications properly.</strong> Sending individual API calls is slower and more error-prone.</li>
+            <li><strong>Monitor, don't assume.</strong> Email notifications are critical for catching failures.</li>
+          </ol>
+
+          <h2>The Bottom Line</h2>
+
+          <p>For a simple, daily task like assigning a question and sending notifications, GitHub Actions is the perfect tool. It's free, reliable, and easy to maintain.</p>
+
+          <p>You don't always need complex infrastructure. Sometimes the simplest solution is the best one.</p>
+
+          <p><strong>If you're building a similar feature, ask yourself:</strong></p>
+          <ul>
+            <li>Do I need a server for this, or can I use GitHub Actions?</li>
+            <li>Am I optimizing for scale I don't have yet?</li>
+            <li>Can I solve this with existing free tools?</li>
+          </ul>
+
+          <p>Often, the answer is yes. Start simple. Scale when you need to.</p>
         </div>
 
         <a href="../index.html" class="back-link">← Back to Home</a>
       </article>
 
-      <!-- Article 4: Supabase Migration -->
+      <!-- Article 5: Supabase Migration -->
       <article id="supabase-migration" class="blog-article" itemscope itemtype="https://schema.org/BlogPosting">
-        <meta itemprop="datePublished" content="2024-12-08" />
-        <meta itemprop="dateModified" content="2024-12-08" />
+        <meta itemprop="datePublished" content="2025-12-15" />
+        <meta itemprop="dateModified" content="2025-12-15" />
         <meta itemprop="author" content="DokiDoki Team" />
 
         <header class="article-header">
-          <h1 class="article-title" itemprop="headline">Building a Scalable UPSC App: Firebase to Supabase</h1>
+          <h1 class="article-title" itemprop="headline">Why We Migrated from Firebase to Supabase: A Real Startup Journey</h1>
         </header>
 
         <div class="article-content" itemprop="articleBody">
-          <p>Content coming soon...</p>
+          <p>Most technical blogs about database migrations make it sound like a calculated, well-planned decision. The truth is messier.</p>
+
+          <p>We didn't migrate from Firebase to Supabase because we're database experts who knew PostgreSQL was superior from day one. We migrated because we started simple, grew complex, and hit Firebase's limits.</p>
+
+          <p>Here's the real story.</p>
+
+          <h2>Phase 1: Building a Prototype with Firebase (June 2025)</h2>
+
+          <p>When we started building DokiDoki, we had one goal: <strong>ship a working prototype in two weeks and show it to our friends.</strong></p>
+
+          <p>We needed:</p>
+          <ul>
+            <li>User authentication</li>
+            <li>Daily question assignment (1 question pushed at 1 AM)</li>
+            <li>Ability to upload answer photos</li>
+            <li>Basic user profiles</li>
+          </ul>
+
+          <p>That's it. No community features. No evaluation system. No leaderboards. Just the core loop: question → answer → store.</p>
+
+          <p><strong>Why we chose Firebase:</strong></p>
+
+          <ol>
+            <li><strong>Fast setup.</strong> Create a project, add Firebase to React Native, and you're writing database queries in 30 minutes.</li>
+            <li><strong>Great documentation.</strong> Firebase docs are some of the best in the industry. Every common use case has a clear example.</li>
+            <li><strong>React Native integration.</strong> Firestore's real-time listeners work seamlessly with React Native's state management.</li>
+            <li><strong>Free tier.</strong> For a prototype with 10 internal users (our friends), Firebase's free tier was more than enough.</li>
+          </ol>
+
+          <p><strong>Timeline:</strong></p>
+          <ul>
+            <li>Week 1: Authentication + daily challenge system working</li>
+            <li>Week 2: Photo upload, basic user profiles, ready to test</li>
+          </ul>
+
+          <p>We shipped the prototype to 10 close friends who were UPSC aspirants. It worked. They used it. We got feedback.</p>
+
+          <h2>Phase 2: Features Got Complex</h2>
+
+          <p>Our friends liked the core concept, but they had one consistent request: <strong>"This is good for practice, but how do I know if my answers are actually improving?"</strong></p>
+
+          <p>We realized writing in isolation doesn't help. You need feedback. So we built a community evaluation system.</p>
+
+          <p><strong>New features based on feedback:</strong></p>
+          <ul>
+            <li><strong>Posts system:</strong> Users can upload answers and share them</li>
+            <li><strong>Community evaluation:</strong> Other users can rate answers on 5 parameters (Content, Structure, Analysis, Language, Presentation), each scored out of 10</li>
+            <li><strong>Likes and comments:</strong> Basic social features</li>
+            <li><strong>Average scoring:</strong> Calculate average scores across multiple evaluations</li>
+            <li><strong>Time tracking:</strong> Users log how long it took to write each answer</li>
+            <li><strong>Filters:</strong> Show posts by "most liked," "highest scored," "recent," "custom questions only"</li>
+            <li><strong>Archived questions:</strong> Track which questions have been used for daily challenges</li>
+          </ul>
+
+          <p>Suddenly, our simple prototype became a social learning platform.</p>
+
+          <h2>Phase 3: The Breaking Point</h2>
+
+          <p>Here's where Firebase started breaking down.</p>
+
+          <p>In Firestore (Firebase's NoSQL database), data is stored in <strong>documents</strong> organized in <strong>collections</strong>. It's great for simple reads and writes. But it's terrible for relational data.</p>
+
+          <p><strong>Our data structure looked like this:</strong></p>
+
+          <ul>
+            <li><code>posts</code> collection (answer uploads)</li>
+            <li><code>evaluations</code> collection (ratings from other users)</li>
+            <li><code>likes</code> collection (who liked which post)</li>
+          </ul>
+
+          <p><strong>The problem:</strong> To show a single post with all its metadata, we needed:</p>
+
+          <ol>
+            <li>Fetch the post document</li>
+            <li>Fetch all evaluations for that post</li>
+            <li>Calculate the average score across 5 parameters</li>
+            <li>Fetch all likes for that post</li>
+            <li>Fetch all comments for that post</li>
+            <li>Fetch user details for each evaluator</li>
+          </ol>
+
+          <p>That's <strong>6+ separate queries</strong> just to display one post.</p>
+
+          <p><strong>Firestore doesn't support JOINs.</strong> You can't say "give me all posts with their evaluations and calculate averages." You have to fetch everything separately and do the math on the client side.</p>
+
+          <p><strong>Real example that broke us:</strong></p>
+
+          <p>We wanted to build a leaderboard showing users with the highest average scores. In SQL, this is one query:</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">SQL</span>
+            </div>
+            <div class="code-content">
+              <pre><code>SELECT users.name, AVG(evaluations.score) as avg_score
+FROM users
+JOIN posts ON users.id = posts.user_id
+JOIN evaluations ON posts.id = evaluations.post_id
+GROUP BY users.id
+ORDER BY avg_score DESC
+LIMIT 10</code></pre>
+            </div>
+          </div>
+
+          <p>In Firestore? <strong>Impossible without fetching all users, all posts, all evaluations, and calculating everything client-side.</strong></p>
+
+          <p>For 10 users, this was annoying. For 100 users, it would be a performance nightmare. For 1,000 users, the app would be unusable.</p>
+
+          <p>We also realized:</p>
+          <ul>
+            <li><strong>Cost:</strong> Firestore charges per read. Fetching 6+ documents per post means costs scale fast.</li>
+            <li><strong>Complexity:</strong> Writing client-side aggregation logic for every feature was slowing us down.</li>
+            <li><strong>Maintainability:</strong> As features grew, the codebase was becoming a mess of nested queries.</li>
+          </ul>
+
+          <p>We needed a relational database. We needed SQL.</p>
+
+          <h2>Phase 4: Why Supabase?</h2>
+
+          <p>Once we decided to migrate, we evaluated a few options:</p>
+
+          <h3>Option 1: PostgreSQL on AWS/Digital Ocean</h3>
+          <p><strong>Pros:</strong> Full control, mature ecosystem<br>
+          <strong>Cons:</strong> We'd have to manage the database ourselves (backups, scaling, security)<br>
+          <strong>Verdict:</strong> Too much infrastructure work for a small team</p>
+
+          <h3>Option 2: MongoDB (another NoSQL)</h3>
+          <p><strong>Pros:</strong> Better aggregation than Firestore<br>
+          <strong>Cons:</strong> Still not relational, wouldn't solve our JOIN problem<br>
+          <strong>Verdict:</strong> Doesn't solve the core issue</p>
+
+          <h3>Option 3: PlanetScale (MySQL)</h3>
+          <p><strong>Pros:</strong> Managed MySQL, good for scaling<br>
+          <strong>Cons:</strong> More expensive than Supabase, less integrated with authentication<br>
+          <strong>Verdict:</strong> Good, but not our best option</p>
+
+          <h3>Option 4: Supabase (PostgreSQL)</h3>
+          <p><strong>Pros:</strong> Managed PostgreSQL, built-in authentication, Row Level Security, great DX, generous free tier<br>
+          <strong>Cons:</strong> Smaller community than Firebase<br>
+          <strong>Verdict:</strong> <strong>Perfect fit</strong></p>
+
+          <p><strong>Why Supabase won:</strong></p>
+
+          <ol>
+            <li><strong>PostgreSQL = proper relational database.</strong> JOINs, aggregations, complex queries, all native.</li>
+            <li><strong>Built-in authentication.</strong> Supabase Auth works like Firebase Auth but integrates directly with the database.</li>
+            <li><strong>Row Level Security (RLS).</strong> PostgreSQL's RLS lets you write security rules at the database level (e.g., "users can only edit their own posts").</li>
+            <li><strong>Better pricing.</strong> Fewer reads needed (one JOIN query vs. multiple fetches), lower costs.</li>
+            <li><strong>Great developer experience.</strong> Supabase's API is almost as easy to use as Firebase, but with SQL's power.</li>
+            <li><strong>Open source.</strong> If Supabase ever shuts down, we can self-host PostgreSQL. No vendor lock-in.</li>
+          </ol>
+
+          <p><strong>The migration decision was easy because we only had 10 internal users.</strong> No production traffic. No paying customers. Just friends testing the app. We could afford downtime and bugs.</p>
+
+          <h2>After Migration: What Improved</h2>
+
+          <h3>1. Queries became simple</h3>
+
+          <p>Before (Firestore):</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">JavaScript</span>
+            </div>
+            <div class="code-content">
+              <pre><code>// Fetch post
+const post = await firestore.collection('posts').doc(postId).get();
+
+// Fetch evaluations
+const evaluations = await firestore.collection('evaluations')
+  .where('post_id', '==', postId).get();
+
+// Calculate average manually
+const scores = evaluations.docs.map(doc => doc.data().score);
+const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+
+// Fetch likes
+const likes = await firestore.collection('likes')
+  .where('post_id', '==', postId).get();
+
+// Return combined data
+return { ...post.data(), avgScore, likeCount: likes.size };</code></pre>
+            </div>
+          </div>
+
+          <p>After (Supabase):</p>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-language">JavaScript</span>
+            </div>
+            <div class="code-content">
+              <pre><code>const { data } = await supabase
+  .from('posts')
+  .select(`
+    *,
+    evaluations(score),
+    likes(count)
+  `)
+  .eq('id', postId)
+  .single();
+
+// Average calculated in SQL, returned directly</code></pre>
+            </div>
+          </div>
+
+          <p><strong>One query. One line. Done.</strong></p>
+
+          <h3>2. Development speed increased</h3>
+
+          <p>Adding new features became 10x faster. Want to filter posts by average score? Easy SQL query. Want to show trending posts (most likes in 24 hours)? One query with a timestamp filter.</p>
+
+          <p>Before, every new feature required complex client-side logic. Now, we just write SQL.</p>
+
+          <h3>3. Cost predictability</h3>
+
+          <p>With Firebase, costs scaled unpredictably. More users = more reads = higher bills, even if features didn't change.</p>
+
+          <p>With Supabase, costs are more predictable. PostgreSQL doesn't charge per query. We pay for database size and compute, which scales more gradually.</p>
+
+          <h3>4. Leaderboards and analytics became possible</h3>
+
+          <p>Features we couldn't build in Firebase (leaderboards, user stats, trending posts) became trivial in PostgreSQL. Aggregations, GROUP BY, HAVING, all native.</p>
+
+          <h2>What We Miss About Firebase</h2>
+
+          <p>Honestly? Not much.</p>
+
+          <p>Firebase's real-time listeners were convenient. Supabase has real-time subscriptions too, but they're not as mature.</p>
+
+          <p>Firebase's dashboard is slightly prettier. Supabase's UI is functional but less polished.</p>
+
+          <p>That's about it.</p>
+
+          <h2>Lessons Learned</h2>
+
+          <p><strong>1. Start simple, migrate when needed</strong></p>
+
+          <p>We don't regret starting with Firebase. It let us ship a working prototype in two weeks. Trying to set up PostgreSQL, authentication, and deployment from day one would have slowed us down.</p>
+
+          <p>But we also don't regret migrating. Once we knew our data model was relational, staying with Firebase would have been painful.</p>
+
+          <p><strong>2. NoSQL is great until it isn't</strong></p>
+
+          <p>Firebase is perfect for simple apps: todo lists, chat apps, real-time dashboards. But if your data has relationships (users → posts → comments → likes), SQL is the right tool.</p>
+
+          <p><strong>3. Migrate early if you're small</strong></p>
+
+          <p>We had 10 users when we migrated. It was easy. If we'd waited until 1,000 users, migration would have been much harder (data export, testing, downtime concerns).</p>
+
+          <p><strong>4. Supabase is underrated</strong></p>
+
+          <p>Supabase gives you PostgreSQL's power with Firebase's ease of use. If you're building a new app and your data is relational, start with Supabase. Don't make the same detour we did.</p>
+
+          <h2>Should You Use Firebase or Supabase?</h2>
+
+          <p><strong>Use Firebase if:</strong></p>
+          <ul>
+            <li>You're building a prototype and need to ship fast</li>
+            <li>Your data model is simple (no complex relationships)</li>
+            <li>You need real-time features (chat, live updates)</li>
+            <li>You're a solo developer who doesn't know SQL</li>
+          </ul>
+
+          <p><strong>Use Supabase if:</strong></p>
+          <ul>
+            <li>Your data has relationships (users, posts, comments, ratings, etc.)</li>
+            <li>You need complex queries (JOINs, aggregations, filters)</li>
+            <li>You want better cost predictability</li>
+            <li>You know SQL (or want to learn it)</li>
+          </ul>
+
+          <p><strong>Our advice:</strong> If you're unsure, start with Supabase. PostgreSQL can do everything Firebase can, but the reverse isn't true.</p>
+
+          <h2>The Bottom Line</h2>
+
+          <p>We started with Firebase because it was fast. We migrated to Supabase because our app grew complex.</p>
+
+          <p>That's not a failure. That's normal product development.</p>
+
+          <p>The lesson isn't "Firebase is bad" or "Supabase is better." The lesson is: <strong>choose the right tool for your current stage, and don't be afraid to migrate when your needs change.</strong></p>
+
+          <p>Start simple. Scale when you need to. Migrate when you must.</p>
+
+          <p>That's how you build real products.</p>
         </div>
 
         <a href="../index.html" class="back-link">← Back to Home</a>
