@@ -1,547 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DokiDoki - AI UPSC Answer Evaluation</title>
+  <link rel="icon" type="image/png" href="dokidoki.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="dokidoki.png" alt="DokiDoki Logo" class="logo-icon" />
+        <span class="logo-text">DokiDoki</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+         target="_blank"
+         rel="noopener"
+         class="download-btn">Download</a>
+    </div>
+  </nav>
 
-    <!-- Primary Meta Tags -->
-    <title>DokiDoki - AI-Powered UPSC Answer Writing & Evaluation App</title>
-    <meta
-      name="title"
-      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation App"
-    />
-    <meta
-      name="description"
-      content="Master UPSC answer writing with AI evaluation. Practice handwritten Mains answers daily, get instant feedback on 5 parameters, and learn from India's most active UPSC community. Build consistency with daily questions."
-    />
-    <meta
-      name="keywords"
-      content="UPSC answer writing, UPSC mains preparation, AI answer evaluation, handwritten answer practice, UPSC daily questions, UPSC answer feedback, civil services preparation, IAS preparation, UPSC community, UPSC consistency, UPSC answer writing app"
-    />
-    <meta name="author" content="DokiDoki" />
-    <meta name="robots" content="index, follow" />
+  <!-- Main Content -->
+  <div class="container">
+    <div class="main-content" id="uploadSection">
+      <h1 class="headline">Your Mains handwritten answer sheet....</h1>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation"
-    />
-    <meta
-      property="og:description"
-      content="Master UPSC answer writing with AI evaluation. Practice handwritten answers, get instant feedback, and join India's most active UPSC community."
-    />
-    <meta property="og:image" content="/dokidoki.png" />
-    <meta property="og:site_name" content="DokiDoki" />
+      <div class="upload-bar" id="uploadBar">
+        <div class="thumbnails-container" id="thumbnailsContainer"></div>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:title"
-      content="DokiDoki - AI-Powered UPSC Answer Writing & Evaluation"
-    />
-    <meta
-      property="twitter:description"
-      content="Master UPSC answer writing with AI evaluation. Practice handwritten answers, get instant feedback, and join India's most active UPSC community."
-    />
-    <meta property="twitter:image" content="/dokidoki.png" />
+        <!-- Attachment button (always visible for adding images) -->
+        <label for="fileInput" id="attachLabel" style="cursor: pointer;">
+          <span class="upload-icon">📎</span>
+        </label>
 
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#121212" />
-
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" href="dokidoki.png" />
-
-    <!-- Structured Data / Schema.org -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "DokiDoki",
-        "applicationCategory": "EducationalApplication",
-        "operatingSystem": "Android",
-        "description": "AI-powered UPSC answer writing and evaluation app. Practice daily Mains questions, upload handwritten answers, and get instant AI feedback on 5 parameters.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "INR"
-        },
-        "keywords": "UPSC, answer writing, AI evaluation, civil services, IAS preparation, Mains preparation"
-      }
-    </script>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav>
-      <div class="container">
-        <div class="nav-container">
-          <a href="#" class="logo">
-            <img src="dokidoki.png" alt="DokiDoki Logo" class="logo-icon" />
-            <span class="logo-text">DokiDoki</span>
-          </a>
-          <button class="hamburger" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <div class="nav-links">
-            <a href="#how-it-works" onclick="scrollToSection('how-it-works'); return false;">How It Works</a>
-            <a href="#explore" onclick="scrollToSection('explore'); return false;">Explore</a>
-            <a href="#faq" onclick="scrollToSection('faq'); return false;">FAQ</a>
-            <a href="/blog/">Blog</a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
-              target="_blank"
-              rel="noopener"
-              class="nav-cta"
-              >Download</a
-            >
-          </div>
-        </div>
+        <!-- Send button (only visible when images exist) -->
+        <button id="sendButton" class="send-button" style="display: none;">
+          →
+        </button>
       </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-split">
-          <div class="hero-left">
-            <h1>
-              <span class="hero-highlight">Master UPSC Mains</span> Answer
-              Writing
-            </h1>
-            <p class="hero-subtitle">
-              Daily PYQ practice with instant AI feedback and peer reviews.
-              Build consistency, improve scores.
-            </p>
+      <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+        multiple
+      >
 
-            <a
-              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
-              target="_blank"
-              rel="noopener"
-              class="hero-cta"
-              >Start Daily Practice</a
-            >
+      <div class="error-message" id="errorMessage"></div>
+    </div>
 
-            <div class="hero-badges">
-              <div class="hero-badge">
-                <span class="badge-icon">📚</span>
-                <span class="badge-text">PYQ</span>
-              </div>
-              <div class="hero-badge">
-                <span class="badge-icon">🤖</span>
-                <span class="badge-text">AI+Peer</span>
-              </div>
-              <div class="hero-badge">
-                <span class="badge-icon">⚡</span>
-                <span class="badge-text">Daily</span>
-              </div>
-            </div>
-          </div>
+    <!-- Results Section -->
+    <div class="results-section" id="resultsSection">
+      <div class="uploaded-images" id="uploadedImages"></div>
 
-          <div class="hero-right">
-            <div class="evaluation-card">
-              <div class="eval-header">
-                <div class="eval-title">Community Evaluation</div>
-                <div class="eval-badge">42/50</div>
-              </div>
+      <!-- Cards will be injected by evaluation.js -->
+      <div id="evaluationCards"></div>
 
-              <div class="eval-parameters">
-                <div class="eval-param">
-                  <div class="param-label">1. Relevance & Understanding</div>
-                  <div class="param-bar">
-                    <div class="param-fill" style="width: 85%"></div>
-                  </div>
-                </div>
-
-                <div class="eval-param">
-                  <div class="param-label">2. Structure & Organization</div>
-                  <div class="param-bar">
-                    <div class="param-fill" style="width: 92%"></div>
-                  </div>
-                </div>
-
-                <div class="eval-param">
-                  <div class="param-label">3. Content Depth & Examples</div>
-                  <div class="param-bar">
-                    <div class="param-fill" style="width: 78%"></div>
-                  </div>
-                </div>
-
-                <div class="eval-param">
-                  <div class="param-label">4. Presentation & Neatness</div>
-                  <div class="param-bar">
-                    <div class="param-fill" style="width: 88%"></div>
-                  </div>
-                </div>
-
-                <div class="eval-param">
-                  <div class="param-label">5. Innovation / Value Addition</div>
-                  <div class="param-bar">
-                    <div class="param-fill" style="width: 80%"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="eval-footer">
-                <span class="eval-icon">🤖</span>
-                <span class="eval-text">AI + Peer feedback</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="section how-it-works">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">
-          Master UPSC answer writing in 4 simple steps
+      <div style="text-align: center; margin: 32px 0; padding: 20px; border-top: 1px solid #2a2a2a;">
+        <p style="font-size: 13px; color: #999; line-height: 1.6; margin-bottom: 12px;">
+          Enjoy uninterrupted, focused community
         </p>
-
-        <div class="timeline">
-          <!-- Step 1 -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-number">1</div>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Daily PYQ at 1 AM</h3>
-              <p class="timeline-text">
-                One carefully selected question from 10 years of UPSC papers.
-                Wake up, practice, improve.
-              </p>
-              <div class="timeline-features">
-                <span class="timeline-badge">📚 10 Years of PYQs</span>
-                <span class="timeline-badge">🎯 70-80% Pattern Repeat</span>
-              </div>
-              <a href="#" class="timeline-link">Or post your own question →</a>
-            </div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-number">2</div>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Write & Upload Your Answer</h3>
-              <p class="timeline-text">
-                Answer on paper like the real exam. Click a photo. Upload in
-                seconds. Add time taken and notes.
-              </p>
-              <div class="timeline-features">
-                <span class="timeline-badge">✍️ Handwritten practice</span>
-                <span class="timeline-badge">📸 Quick upload</span>
-                <span class="timeline-badge">⏱️ Track timing</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-number">3</div>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Get AI + Peer Feedback</h3>
-              <p class="timeline-text">
-                AI analyzes instantly. Fellow aspirants review your answer. Get
-                scored on 5 parameters: relevance, structure, content,
-                presentation, value.
-              </p>
-              <div class="timeline-features">
-                <span class="timeline-badge">🤖 Instant AI evaluation</span>
-                <span class="timeline-badge">👥 Peer learning</span>
-                <span class="timeline-badge">📊 5-parameter scoring</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-number">4</div>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Track Progress & Build Streaks</h3>
-              <p class="timeline-text">
-                Watch your streak grow. Track scores over time. Build the daily
-                habit that leads to UPSC success.
-              </p>
-              <div class="timeline-features">
-                <span class="timeline-badge">🔥 Streak tracking</span>
-                <span class="timeline-badge">📈 Score improvement</span>
-                <span class="timeline-badge">💪 Habit building</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-cta">
-          <a href="#explore" class="timeline-cta-btn">See It In Action</a>
-        </div>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+          target="_blank"
+          rel="noopener"
+          style="font-size: 13px; color: #00ADB5; text-decoration: none; transition: color 0.2s;"
+          onmouseover="this.style.color='#61bfc5'"
+          onmouseout="this.style.color='#00ADB5'"
+        >
+          Try DokiDoki →
+        </a>
       </div>
-    </section>
 
-    <!-- Explore Section -->
-    <section id="explore" class="section explore-section">
-      <div class="container">
-        <h2 class="section-title">Explore DokiDoki</h2>
-        <p class="section-subtitle">Active community and expert insights from UPSC aspirants</p>
-
-        <!-- Community Highlights Carousel -->
-        <div class="subsection community-carousel-section">
-          <h3 class="subsection-title">Join UPSC Aspirants</h3>
-          <p class="carousel-subtitle">Active community sharing answers, feedback, and daily progress</p>
-
-          <div class="carousel-container">
-            <button class="carousel-nav carousel-prev" aria-label="Previous slide">‹</button>
-
-            <div class="carousel-wrapper">
-              <div class="carousel-track">
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="0.png" alt="Community feed with daily questions" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="1.png" alt="Answer evaluation with peer feedback" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="2.png" alt="User profile and streak tracking" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="3.png" alt="Detailed answer analysis" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="4.png" alt="Daily PYQ challenge screen" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="5.png" alt="Answer upload interface" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="6.png" alt="AI feedback and scoring" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="7.png" alt="Community discussions" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="8.png" alt="Progress tracking dashboard" />
-                  </div>
-                </div>
-                <div class="carousel-slide">
-                  <div class="screenshot-card">
-                    <img src="9.png" alt="Streak and achievements" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <button class="carousel-nav carousel-next" aria-label="Next slide">›</button>
-          </div>
-
-          <div class="carousel-dots"></div>
-
-          <div class="carousel-cta">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
-              target="_blank"
-              rel="noopener"
-              class="carousel-download-btn"
-            >
-              Download App & Join Community
-            </a>
-          </div>
-        </div>
-
-        <!-- Blog -->
-        <div class="subsection">
-          <h3 class="subsection-title">Latest from the Blog</h3>
-          <div class="content-grid">
-            <article class="content-card blog-card">
-              <h4 class="card-heading">Why We Built DokiDoki</h4>
-              <p class="card-description">The story behind building an AI-powered UPSC answer writing app focused on daily practice and habit formation...</p>
-              <a href="/blog/" class="card-link">Read Article →</a>
-            </article>
-
-            <article class="content-card blog-card">
-              <h4 class="card-heading">Why Reddit and Social Media Won't Work for Your UPSC Preparation</h4>
-              <p class="card-description">Understanding why scattered advice and echo chambers can derail your UPSC journey and what works instead...</p>
-              <a href="/blog/" class="card-link">Read Article →</a>
-            </article>
-
-            <article class="content-card blog-card">
-              <h4 class="card-heading">Automating Daily UPSC PYQs with GitHub Actions</h4>
-              <p class="card-description">How we built a system to deliver daily previous year questions at 1 AM using GitHub Actions and push notifications...</p>
-              <a href="/blog/" class="card-link">Read Article →</a>
-            </article>
-          </div>
-          <div class="subsection-footer">
-            <a href="/blog/" class="view-all-link">View All Articles →</a>
-          </div>
-        </div>
+      <div class="upload-another">
+        <button class="upload-another-btn" onclick="window.uploadAnother()">
+          📎 Upload Another Answer
+        </button>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- FAQ -->
-    <section id="faq" class="section faq-section">
-      <div class="container">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">
-          Everything you need to know about DokiDoki
-        </p>
+  <!-- Loading Modal (content injected by loader.js) -->
+  <div class="modal-overlay" id="loadingModal"></div>
 
-        <div class="faq-list">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How does AI evaluate handwritten UPSC answers?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Our AI feature uses existing LLM model to read your handwritten
-                answers. It then evaluates them on 5 key parameters: relevance &
-                understanding, structure & organization, content depth &
-                examples, presentation & neatness, and innovation/value
-                addition. You get instant, detailed feedback just like UPSC
-                examiners provide, helping you improve with every answer.
-              </p>
-            </div>
-          </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="explore.html">Explore</a>
+    <span class="footer-divider">•</span>
+    <a href="blog/index.html">Blog</a>
+  </footer>
 
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span
-                >Why are PYQs (Previous Year Questions) important for UPSC
-                Mains?</span
-              >
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                UPSC repeats 70-80% of themes and question patterns across
-                years. Our database of 10 years of PYQs helps you identify
-                high-yield topics, understand question types, and practice what
-                UPSC actually tests. Instead of chasing endless current affairs,
-                PYQs show you exactly what matters for the exam.
-              </p>
-            </div>
-          </div>
 
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>Can I practice both daily PYQs and my own questions?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Yes! You get one curated PYQ daily at 1 AM for consistent
-                practice. You can also upload your own questions anytime—whether
-                from mock tests, coaching material, or personal study. Both get
-                the same AI + peer evaluation, giving you complete flexibility
-                in your preparation.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span
-                >What are the 5 parameters used to evaluate UPSC answers?</span
-              >
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Every answer is scored on:
-                <strong>(1) Relevance & Understanding</strong> - Did you address
-                the question? <strong>(2) Structure & Organization</strong> -
-                Clear intro-body-conclusion with logical flow.
-                <strong>(3) Content Depth & Examples</strong> - Facts, data,
-                case studies, current affairs.
-                <strong>(4) Presentation & Neatness</strong> - Handwriting,
-                diagrams, formatting.
-                <strong>(5) Innovation/Value Addition</strong> - Critical
-                thinking, balanced perspective. This mirrors actual UPSC
-                evaluation, preparing you for real exam conditions.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 5 -->
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span
-                >How does peer review help improve UPSC answer writing?</span
-              >
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Fellow UPSC aspirants review your answers alongside AI. They
-                spot presentation issues, suggest better examples, and share
-                diverse perspectives you might miss. Reviewing others' answers
-                also teaches you what works and what doesn't. This community
-                learning accelerates improvement faster than studying alone,
-                just like a coaching classroom—but available 24/7.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-brand">
-            <img src="dokidoki.png" alt="DokiDoki Logo" class="footer-logo" />
-            <h3 class="footer-title">DokiDoki</h3>
-          </div>
-
-          <p class="footer-about">
-            Master UPSC answer writing through consistent daily practice.<br />
-            AI evaluation, peer reviews, and habit tracking—all in one app.
-          </p>
-
-          <a href="mailto:dokidoki.cse@gmail.com" class="footer-email">
-            📧 dokidoki.cse@gmail.com
-          </a>
-
-          <div class="footer-divider"></div>
-
-          <p class="footer-copyright">© 2024 DokiDoki. Built for aspirants.</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+  <!-- JavaScript Modules -->
+  <script src="upload.js"></script>
+  <script src="evaluation.js"></script>
+  <script src="loader.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
