@@ -27,6 +27,48 @@ class DokiDokiApp {
 
     // Make uploadAnother available globally
     window.uploadAnother = () => this.uploadAnother();
+
+    // Bind load evaluations button
+    const loadEvalBtn = document.getElementById('loadEvaluationsBtn');
+    if (loadEvalBtn) {
+      loadEvalBtn.addEventListener('click', async () => {
+        try {
+          const response = await fetch('https://seiwhmnvyrrhqkglovwo.supabase.co/functions/v1/get_ai_evaluations');
+          const text = await response.text();
+          console.log('Raw response:', text);
+
+          try {
+            const data = JSON.parse(text);
+            console.log('API Data:', data);
+          } catch (e) {
+            console.error('Response is not JSON:', text);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+    }
+
+    // Carousel navigation
+    this.initCarousel();
+  }
+
+  initCarousel() {
+    const track = document.getElementById('evalCarouselTrack');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = 245; // Card width (220px) + gap (25px)
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
   }
 
   async handleSend() {
