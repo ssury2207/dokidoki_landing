@@ -125,6 +125,14 @@ class EvaluationManager {
         <div class="card-title">Detailed Analysis</div>
         <div class="feedback-text">${data.detailed_feedback}</div>
       </div>
+
+      <!-- Suggestions Card -->
+      ${data.suggestions ? `
+        <div class="result-card">
+          <div class="card-title">Suggestions for Improvement</div>
+          <div class="feedback-text">${data.suggestions}</div>
+        </div>
+      ` : ''}
     `;
   }
 

@@ -57,6 +57,12 @@
 
       <div class="error-message" id="errorMessage"></div>
       </div>
+
+      <!-- Scroll hint button -->
+      <button class="scroll-hint-btn" onclick="document.querySelector('.latest-evaluations-carousel').scrollIntoView({behavior: 'smooth'})">
+        Scroll down for some inspiration
+      </button>
+
     </div>
   </section>
 
@@ -312,21 +318,27 @@
          View All
         </a>
       </div>
+
+      <!-- Footer -->
+      <footer class="section-footer">
+        <div class="footer-row">
+          <a href="explore.html">Explore</a>
+          <span class="footer-divider">•</span>
+          <a href="blog/index.html">Blog</a>
+        </div>
+        <div class="footer-row">
+          <span class="footer-contact">Got feedback or ideas? We're all ears at <a href="mailto:dokidoki.cse@gmail.com">dokidoki.cse@gmail.com</a></span>
+        </div>
+      </footer>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <a href="explore.html">Explore</a>
-    <span class="footer-divider">•</span>
-    <a href="blog/index.html">Blog</a>
-  </footer>
 
 
   <!-- JavaScript Modules -->
   <script src="upload.js"></script>
   <script src="evaluation.js"></script>
   <script src="loader.js"></script>
+  <script src="carousel.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
