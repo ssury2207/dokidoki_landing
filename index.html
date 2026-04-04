@@ -25,8 +25,9 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="container">
-    <div class="main-content" id="uploadSection">
+  <section class="page-section">
+    <div class="container">
+      <div class="main-content" id="uploadSection">
       <h1 class="headline">Your Mains handwritten answer sheet....</h1>
 
       <div class="upload-bar" id="uploadBar">
@@ -34,12 +35,12 @@
 
         <!-- Attachment button (always visible for adding images) -->
         <label for="fileInput" id="attachLabel" style="cursor: pointer;">
-          <span class="upload-icon">📎</span>
+          <img src="assets/attachment.svg" alt="Attach" class="upload-icon" />
         </label>
 
         <!-- Send button (only visible when images exist) -->
         <button id="sendButton" class="send-button" style="display: none;">
-          →
+          <img src="assets/send.svg" alt="Send" />
         </button>
       </div>
 
@@ -50,10 +51,16 @@
         multiple
       >
 
-      <div class="error-message" id="errorMessage"></div>
-    </div>
+      <div class="upload-subtitle">
+        GS Paper 1-4 <span class="dot">•</span> Optional Subjects <span class="dot">•</span> Essay Writing
+      </div>
 
-    <!-- Results Section -->
+      <div class="error-message" id="errorMessage"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
     <div class="results-section" id="resultsSection">
       <div class="uploaded-images" id="uploadedImages"></div>
 
@@ -86,6 +93,227 @@
 
   <!-- Loading Modal (content injected by loader.js) -->
   <div class="modal-overlay" id="loadingModal"></div>
+
+  <!-- Latest AI Evaluations Carousel -->
+  <section class="latest-evaluations-carousel">
+    <div class="container">
+      <div class="carousel-header">
+        <h2 class="carousel-title">See How Others Did</h2>
+        <div class="carousel-controls">
+          <button class="carousel-arrow left" id="carouselPrev">
+            <img src="assets/left_arrow.svg" alt="Previous" />
+          </button>
+          <button class="carousel-arrow right" id="carouselNext">
+            <img src="assets/right_arrow.svg" alt="Next" />
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="eval-carousel-track" id="evalCarouselTrack">
+          <!-- Card 1 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                24 Feb 2026
+              </span>
+              <span class="eval-score">29/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. While the Employment Linked Incentive (ELI) scheme and the Production Linked Incentive (PLI) scheme are both designed to boost economic growth, they employ different approaches and focus on distinct outcomes. Discuss...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>The candidate has provided a relevant answer by attempting to compare the Employment Linked Incentive (ELI) and Production Linked Incentive (PLI) schemes. The use of a comparative format effectively highlights their different approaches and outcomes...</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                23 Feb 2026
+              </span>
+              <span class="eval-score">35/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Discuss the significance of Digital Public Infrastructure (DPI) in transforming governance and service delivery in India...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Good understanding of DPI concepts. The answer demonstrates clear knowledge of India Stack and its applications in governance...</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                22 Feb 2026
+              </span>
+              <span class="eval-score">42/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Analyze the role of cooperative federalism in India's climate action plan and its challenges...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Excellent analysis with relevant examples. Strong understanding of federal dynamics and environmental policy integration...</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                21 Feb 2026
+              </span>
+              <span class="eval-score">31/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Examine the impact of artificial intelligence on employment in the manufacturing sector...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Decent attempt with basic coverage. More specific examples and data would strengthen the argument...</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                20 Feb 2026
+              </span>
+              <span class="eval-score">38/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Critically evaluate the effectiveness of Jan Aushadhi Kendras in making healthcare affordable...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Well-structured answer with balanced perspective. Good use of statistics and ground-level challenges...</p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                19 Feb 2026
+              </span>
+              <span class="eval-score">27/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Discuss the challenges in implementation of National Education Policy 2020 at the ground level...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Basic understanding shown but lacks depth. Answer would benefit from more concrete examples and policy analysis...</p>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                18 Feb 2026
+              </span>
+              <span class="eval-score">44/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Analyze the geopolitical implications of India's Act East Policy in the Indo-Pacific region...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Outstanding answer with comprehensive coverage. Excellent geopolitical awareness and strategic thinking demonstrated...</p>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                17 Feb 2026
+              </span>
+              <span class="eval-score">33/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Evaluate the role of microfinance institutions in rural entrepreneurship development...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Satisfactory attempt with room for improvement. Include more case studies and address sustainability concerns...</p>
+            </div>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                16 Feb 2026
+              </span>
+              <span class="eval-score">40/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Discuss the significance of urban green spaces in sustainable city planning with examples...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Very good answer with relevant examples. Strong understanding of urban planning principles and environmental concerns...</p>
+            </div>
+          </div>
+
+          <!-- Card 10 -->
+          <div class="eval-card">
+            <div class="eval-card-header">
+              <span class="eval-date">
+                <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
+                15 Feb 2026
+              </span>
+              <span class="eval-score">36/50</span>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-question">
+              <p>Q. Examine the constitutional provisions for protection of minority rights in India...</p>
+            </div>
+            <div class="eval-card-divider"></div>
+            <div class="eval-card-summary">
+              <p>Good constitutional knowledge displayed. Answer demonstrates understanding of fundamental rights and their judicial interpretation...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-subtitle">
+        100+Answers Evaluated
+      </div>
+
+      <div class="carousel-view-all">
+        <a href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki" target="_blank" rel="noopener" class="view-all-link">
+         View All
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">

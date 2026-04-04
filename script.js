@@ -202,3 +202,137 @@ document.querySelectorAll(".faq-question").forEach((question) => {
     if (e.key === "ArrowRight") nextSlide();
   });
 })();
+
+// Latest AI Evaluations Carousel
+(function initEvaluationsCarousel() {
+  let currentEvalIndex = 0;
+  let evaluations = [];
+
+  async function loadCarouselEvaluations() {
+    try {
+      console.log('Fetching evaluations from API...');
+      const response = await fetch('https://seiwhmnvyrrhqkglovwo.supabase.co/functions/v1/get_ai_evaluations');
+      console.log('Response status:', response.status);
+
+      const result = await response.json();
+      console.log('API Response:', result);
+
+      const { data } = result;
+
+      if (!data || data.length === 0) {
+        console.log('No data returned from API');
+        const track = document.getElementById('evalCarouselTrack');
+        if (track) {
+          track.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No evaluations yet</p>';
+        }
+        return;
+      }
+
+      console.log('Found evaluations:', data.length);
+      evaluations = data;
+      renderEvaluationsCarousel();
+      setupEvaluationsCarouselControls();
+
+    } catch (error) {
+      console.error('Failed to load evaluations:', error);
+      const track = document.getElementById('evalCarouselTrack');
+      if (track) {
+        track.innerHTML = '<p style="text-align: center; color: #f00; padding: 40px;">Error loading evaluations. Check console.</p>';
+      }
+    }
+  }
+
+  function renderEvaluationsCarousel() {
+    const track = document.getElementById('evalCarouselTrack');
+    if (!track) return;
+
+    track.innerHTML = evaluations.map((evaluation, index) => `
+      <div class="eval-carousel-card ${index === 0 ? 'active' : ''}">
+        <div class="glass-eval-card">
+          <div class="eval-card-score">${evaluation.total_score}/50</div>
+          <div class="eval-card-summary">${evaluation.summary || 'No summary available'}</div>
+          <div class="eval-card-time">${formatTime(evaluation.created_at)}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function setupEvaluationsCarouselControls() {
+    const prevBtn = document.getElementById('evalPrevBtn');
+    const nextBtn = document.getElementById('evalNextBtn');
+
+    prevBtn?.addEventListener('click', () => navigateEvaluationsCarousel(-1));
+    nextBtn?.addEventListener('click', () => navigateEvaluationsCarousel(1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const track = document.getElementById('evalCarouselTrack');
+      if (!track || !track.querySelector('.eval-carousel-card')) return;
+
+      if (e.key === 'ArrowLeft') navigateEvaluationsCarousel(-1);
+      if (e.key === 'ArrowRight') navigateEvaluationsCarousel(1);
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const track = document.getElementById('evalCarouselTrack');
+
+    track?.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    track?.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleEvalSwipe();
+    });
+
+    function handleEvalSwipe() {
+      if (touchEndX < touchStartX - 50) navigateEvaluationsCarousel(1);
+      if (touchEndX > touchStartX + 50) navigateEvaluationsCarousel(-1);
+    }
+  }
+
+  function navigateEvaluationsCarousel(direction) {
+    const cards = document.querySelectorAll('.eval-carousel-card');
+    if (cards.length === 0) return;
+
+    cards[currentEvalIndex].classList.remove('active');
+    cards[currentEvalIndex].classList.add(direction > 0 ? 'prev' : '');
+
+    currentEvalIndex += direction;
+
+    if (currentEvalIndex < 0) currentEvalIndex = evaluations.length - 1;
+    if (currentEvalIndex >= evaluations.length) currentEvalIndex = 0;
+
+    cards[currentEvalIndex].classList.remove('prev');
+    cards[currentEvalIndex].classList.add('active');
+
+    setTimeout(() => {
+      cards.forEach(card => card.classList.remove('prev'));
+    }, 500);
+  }
+
+  function formatTime(timestamp) {
+    const now = new Date();
+    const created = new Date(timestamp);
+    const diffMs = now - created;
+    const diffMins = Math.floor(diffMs / 60000);
+
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+  }
+
+  // Load on button click
+  const loadBtn = document.getElementById('loadEvaluationsBtn');
+  loadBtn?.addEventListener('click', async () => {
+    alert('Hello');
+  });
+})();

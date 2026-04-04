@@ -1475,3 +1475,215 @@ html {
     font-size: 14px;
   }
 }
+
+/* Latest AI Evaluations Carousel */
+.latest-evaluations-carousel {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 40px 20px;
+}
+
+.carousel-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #e5e5e5;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: -0.02em;
+}
+
+.evaluations-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.eval-carousel-track {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 280px;
+  overflow: hidden;
+}
+
+.eval-carousel-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eval-carousel-card.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.eval-carousel-card.prev {
+  transform: translateX(-100%);
+}
+
+.glass-eval-card {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.8));
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 40px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-eval-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg,
+    rgba(0, 173, 181, 0.4),
+    rgba(97, 191, 197, 0.3),
+    rgba(0, 173, 181, 0.2),
+    rgba(97, 191, 197, 0.3),
+    rgba(0, 173, 181, 0.4)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.glass-eval-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 173, 181, 0.3);
+}
+
+.eval-card-score {
+  font-size: 48px;
+  font-weight: 600;
+  color: #00ADB5;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.eval-card-summary {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ccc;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.eval-card-time {
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.eval-carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #2a2a2a;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  color: #00ADB5;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.eval-carousel-btn:hover {
+  border-color: #00ADB5;
+  background: rgba(0, 173, 181, 0.1);
+  transform: scale(1.1);
+}
+
+.eval-carousel-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .evaluations-carousel-container {
+    gap: 16px;
+  }
+
+  .eval-carousel-track {
+    max-width: 100%;
+    height: 320px;
+  }
+
+  .glass-eval-card {
+    padding: 32px 24px;
+  }
+
+  .eval-card-score {
+    font-size: 40px;
+  }
+
+  .eval-card-summary {
+    font-size: 14px;
+  }
+
+  .eval-carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .evaluations-carousel-container {
+    gap: 12px;
+  }
+
+  .eval-carousel-track {
+    height: 280px;
+  }
+
+  .glass-eval-card {
+    padding: 28px 20px;
+  }
+
+  .eval-card-score {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .eval-carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
