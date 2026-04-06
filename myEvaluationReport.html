@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Evaluation Report - DokiDoki</title>
+  <link rel="icon" type="image/png" href="dokidoki.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="dokidoki.png" alt="DokiDoki Logo" class="logo-icon" />
+        <span class="logo-text">DokiDoki</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+         target="_blank"
+         rel="noopener"
+         class="download-btn">Download</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="evaluation-report-page">
+    <div class="container" style="padding-top: 100px; padding-bottom: 60px;">
+      <!-- Uploaded Images -->
+      <div class="uploaded-images" id="uploadedImages"></div>
+
+      <!-- Evaluation Cards -->
+      <div id="evaluationCards"></div>
+
+      <!-- CTA Section -->
+      <div style="text-align: center; margin: 32px 0; padding: 20px; border-top: 1px solid #2a2a2a;">
+        <p style="font-size: 13px; color: #999; line-height: 1.6; margin-bottom: 12px;">
+          Want detailed AI evaluation for your answers?
+        </p>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.dokidoki.dev.dokidoki"
+          target="_blank"
+          rel="noopener"
+          class="cta-button"
+        >
+          Download DokiDoki App
+        </a>
+      </div>
+
+      <!-- Back Link -->
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="index.html" style="font-size: 14px; color: #666; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#999'" onmouseout="this.style.color='#666'">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="explore.html">Explore</a>
+    <span class="footer-divider">•</span>
+    <a href="blog/index.html">Blog</a>
+    <br>
+    <span style="font-size: 12px; color: #555; margin-top: 8px; display: inline-block;">
+      Got feedback or ideas? We're all ears at <a href="mailto:dokidoki.cse@gmail.com" style="color: #666;">dokidoki.cse@gmail.com</a>
+    </span>
+  </footer>
+
+  <!-- Image Viewer Modal -->
+  <div class="image-viewer-modal" id="imageViewerModal">
+    <button class="image-viewer-close" id="imageViewerClose">×</button>
+    <img class="image-viewer-img" id="imageViewerImg" src="" alt="Answer sheet">
+  </div>
+
+  <!-- JavaScript -->
+  <script src="evaluation.js"></script>
+  <script src="my-evaluation-view.js"></script>
+</body>
+</html>

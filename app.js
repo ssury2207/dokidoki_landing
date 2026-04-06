@@ -111,24 +111,15 @@ class DokiDokiApp {
       this.hideLoading();
 
       // Check if evaluation was successful
-      if (result.success && result.data) {
-        // Map the API response to our frontend format
-        const evaluation = result.data;
-        const scores = {
-          relevance_score: evaluation.scores.relevance,
-          structure_score: evaluation.scores.structure,
-          content_depth_score: evaluation.scores.content_depth,
-          presentation_score: evaluation.scores.presentation,
-          innovation_score: evaluation.scores.innovation,
-          total_score: evaluation.scores.total,
-          summary: evaluation.analysis.summary,
-          detailed_feedback: evaluation.analysis.detailed,
-          strengths: evaluation.analysis.strengths,
-          improvements: evaluation.analysis.improvements
-        };
+      if (result.success && result.data && result.post_id) {
+        // Store evaluation data in localStorage
+        localStorage.setItem('myEvaluation', JSON.stringify(result));
 
-        // Display results
-        this.evaluationManager.displayResults(imageURLs, scores);
+        // Open new tab with post_id
+        window.open(`myEvaluationReport.html?id=${result.post_id}`, '_blank');
+
+        // Reset for next upload
+        this.uploadAnother();
       } else if (result.validation_failed) {
         // Show validation error
         throw { type: 'validation', message: result.error };
@@ -141,12 +132,17 @@ class DokiDokiApp {
       // Hide loading
       this.hideLoading();
 
-      // Display error card
-      this.evaluationManager.displayError(
-        imageURLs,
-        error.type || 'technical',
-        error.message || 'An unexpected error occurred. Please try again.'
-      );
+      // Store error data in localStorage
+      localStorage.setItem('myEvaluationError', JSON.stringify({
+        type: error.type || 'technical',
+        message: error.message || 'An unexpected error occurred. Please try again.'
+      }));
+
+      // Open new tab with error state
+      window.open('myEvaluationReport.html?error=true', '_blank');
+
+      // Reset for next upload
+      this.uploadAnother();
     }
   }
 
