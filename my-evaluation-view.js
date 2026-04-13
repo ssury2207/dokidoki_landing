@@ -107,7 +107,7 @@ function displayEvaluationCards(evaluationData) {
   const cardsContainer = document.getElementById('evaluationCards');
 
   // Transform API response to match EvaluationManager format
-  const evaluation = transformEvaluationData(evaluationData.data);
+  const evaluation = transformEvaluationData(evaluationData);
 
   // Use existing EvaluationManager to build cards
   const evaluationManager = new EvaluationManager();
@@ -135,7 +135,9 @@ function displayEvaluationCards(evaluationData) {
   }, 100);
 }
 
-function transformEvaluationData(data) {
+function transformEvaluationData(evaluationData) {
+  const data = evaluationData.data || {};
+
   // Transform API response structure to match expected format
   return {
     total_score: data.scores?.total || 0,
@@ -148,7 +150,9 @@ function transformEvaluationData(data) {
     strengths: data.analysis?.strengths || [],
     improvements: data.analysis?.improvements || [],
     detailed_feedback: data.analysis?.detailed || '',
-    suggestions: data.analysis?.suggestions || ''
+    suggestions: data.analysis?.suggestions || '',
+    extracted_question: data.question?.extracted_text || '',
+    created_at: evaluationData.created_at || ''
   };
 }
 

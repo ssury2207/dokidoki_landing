@@ -5,7 +5,7 @@
 
 class CarouselManager {
   constructor() {
-    this.API_URL = 'https://pweigtkozqgybekvadaz.supabase.co/functions/v1/getAIEvaluations';
+    this.API_URL = 'https://seiwhmnvyrrhqkglovwo.supabase.co/functions/v1/get_ai_evaluations';
     this.carouselTrack = document.getElementById('evalCarouselTrack');
 
     this.init();
@@ -28,19 +28,22 @@ class CarouselManager {
   createShimmerCard() {
     return `
       <div class="eval-card shimmer-card">
-        <div class="eval-card-header">
-          <span class="shimmer-box shimmer-date"></span>
-          <span class="shimmer-box shimmer-score"></span>
+        <div class="eval-card-top">
+          <div class="eval-score-block">
+            <span class="shimmer-box shimmer-score-large"></span>
+            <span class="shimmer-box shimmer-score-label"></span>
+          </div>
         </div>
-        <div class="eval-card-divider"></div>
+        <div class="eval-card-verdict">
+          <div class="shimmer-box shimmer-verdict-line"></div>
+        </div>
         <div class="eval-card-question">
           <div class="shimmer-box shimmer-text-line"></div>
           <div class="shimmer-box shimmer-text-line"></div>
         </div>
-        <div class="eval-card-divider"></div>
-        <div class="eval-card-summary">
-          <div class="shimmer-box shimmer-text-line"></div>
-          <div class="shimmer-box shimmer-text-line"></div>
+        <div class="eval-card-footer">
+          <span class="shimmer-box shimmer-date"></span>
+          <span class="shimmer-box shimmer-link"></span>
         </div>
       </div>
     `;
@@ -82,29 +85,68 @@ class CarouselManager {
 
   createEvaluationCard(evaluation) {
     const formattedDate = this.formatDate(evaluation.created_at);
-    const score = `${evaluation.total_score}/50`;
-    const question = this.truncateText(evaluation.extracted_question, 150);
-    const summary = this.truncateText(evaluation.summary, 120);
+    const totalScore = Number(evaluation.total_score || 0);
+    const scoreClass = this.getScoreClass(totalScore);
+    const question = this.truncateText(evaluation.extracted_question || 'Question unavailable', 88);
+    const verdict = this.getVerdict(evaluation);
 
     return `
-      <div class="eval-card" onclick="window.carouselManager.openEvaluation('${evaluation.id}')" style="cursor: pointer;">
-        <div class="eval-card-header">
+      <div class="eval-card eval-card-clickable" onclick="window.carouselManager.openEvaluation('${evaluation.id}')">
+        <div class="eval-card-top">
+          <div class="eval-score-block">
+            <div class="eval-score-row">
+              <span class="eval-score ${scoreClass}">${totalScore}</span>
+              <span class="eval-score-out-of">/50</span>
+            </div>
+          </div>
+        </div>
+        <div class="eval-card-verdict">
+          <p>${verdict}</p>
+        </div>
+        <div class="eval-card-question">
+          <p>${question}</p>
+        </div>
+        <div class="eval-card-footer">
           <span class="eval-date">
             <img src="assets/calander.svg" alt="calendar" class="calendar-icon" />
             ${formattedDate}
           </span>
-          <span class="eval-score">${score}</span>
-        </div>
-        <div class="eval-card-divider"></div>
-        <div class="eval-card-question">
-          <p>${question}</p>
-        </div>
-        <div class="eval-card-divider"></div>
-        <div class="eval-card-summary">
-          <p>${summary}</p>
+          <span class="eval-card-link">View report →</span>
         </div>
       </div>
     `;
+  }
+
+  getVerdict(evaluation) {
+    const totalScore = Number(evaluation.total_score || 0);
+    const summary = (evaluation.summary || '').trim();
+
+    if (summary) {
+      const firstSentence = summary.split(/[.!?]/).find((sentence) => sentence.trim().length > 0);
+      if (firstSentence) {
+        return this.truncateText(firstSentence.trim(), 56);
+      }
+    }
+
+    if (totalScore >= 40) {
+      return 'Strong answer with clear structure and depth';
+    }
+
+    if (totalScore >= 32) {
+      return 'Balanced answer with room to sharpen analysis';
+    }
+
+    if (totalScore >= 24) {
+      return 'Fair attempt with scope to improve depth';
+    }
+
+    return 'Basic attempt needing clearer structure and content';
+  }
+
+  getScoreClass(totalScore) {
+    if (totalScore >= 40) return 'high';
+    if (totalScore >= 30) return 'medium';
+    return 'low';
   }
 
   openEvaluation(evaluationId) {
@@ -133,7 +175,7 @@ class CarouselManager {
 
   truncateText(text, maxLength) {
     if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + '...';
+    return text.substring(0, maxLength).trimEnd() + '...';
   }
 }
 

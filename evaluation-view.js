@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function displayImages(evaluation) {
   const imagesContainer = document.getElementById('uploadedImages');
 
-  // Get images from nested posts.images structure
-  const images = evaluation.posts?.images || [];
+  const images = getEvaluationImages(evaluation);
 
   if (images.length === 0) {
     imagesContainer.style.display = 'none';
@@ -42,17 +41,37 @@ function displayImages(evaluation) {
   }
 
   imagesContainer.innerHTML = '';
-  images.forEach(url => {
+  images.forEach(imageUrl => {
     const img = document.createElement('img');
     img.className = 'uploaded-image';
-    img.src = url;
+    img.src = imageUrl;
     img.alt = 'Answer sheet';
 
     // Add click handler to open image viewer
-    img.addEventListener('click', () => openImageViewer(url));
+    img.addEventListener('click', () => openImageViewer(imageUrl));
 
     imagesContainer.appendChild(img);
   });
+}
+
+function getEvaluationImages(evaluation) {
+  const rawImages = (
+    evaluation.image_urls ||
+    evaluation.imageUrls ||
+    evaluation.posts?.images ||
+    evaluation.images ||
+    []
+  );
+
+  return rawImages
+    .map((image) => {
+      if (typeof image === 'string') return image;
+      if (image?.fileData?.fileUri) return image.fileData.fileUri;
+      if (image?.url) return image.url;
+      if (image?.secure_url) return image.secure_url;
+      return null;
+    })
+    .filter(Boolean);
 }
 
 function openImageViewer(imageUrl) {
@@ -115,4 +134,3 @@ function displayEvaluationCards(evaluation) {
     }
   }, 100);
 }
-

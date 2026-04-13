@@ -6,7 +6,9 @@
   <title>DokiDoki - AI UPSC Answer Evaluation</title>
   <link rel="icon" type="image/png" href="dokidoki.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -56,6 +58,16 @@
       </div>
 
       <div class="error-message" id="errorMessage"></div>
+
+      <div class="inline-loader-preview" id="inlineLoaderPreview" aria-live="polite">
+        <div class="inline-loader-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="inline-loader-status" id="inlineLoaderStatus">Reading your answer sheets</div>
+        <div class="inline-loader-time" id="inlineLoaderTime">0s</div>
+      </div>
       </div>
 
       <!-- Scroll hint button -->

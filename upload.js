@@ -8,6 +8,7 @@ class UploadManager {
     this.selectedFiles = [];
     this.uploadedImageURLs = [];
     this.MAX_FILES = 3;
+    this.isProcessing = false;
 
     // DOM elements
     this.fileInput = document.getElementById('fileInput');
@@ -46,22 +47,32 @@ class UploadManager {
     // Clear thumbnails
     this.thumbnailsContainer.innerHTML = '';
 
+    if (this.isProcessing) {
+      this.attachLabel.style.display = 'none';
+      this.sendButton.style.display = 'none';
+      this.errorMessage.textContent = '';
+      this.fileInput.disabled = true;
+      this.uploadBar.classList.add('is-processing');
+    } else {
+      this.uploadBar.classList.remove('is-processing');
+    }
+
     // Show/hide buttons based on file count
-    if (this.selectedFiles.length === 0) {
+    if (!this.isProcessing && this.selectedFiles.length === 0) {
       // No images: show attachment, hide send button
       this.attachLabel.style.display = 'block';
       this.sendButton.style.display = 'none';
       this.errorMessage.textContent = '';
       this.fileInput.disabled = false;
       this.uploadBar.classList.remove('max-files');
-    } else if (this.selectedFiles.length < this.MAX_FILES) {
+    } else if (!this.isProcessing && this.selectedFiles.length < this.MAX_FILES) {
       // 1-2 images: show both attachment and send button
       this.attachLabel.style.display = 'block';
       this.sendButton.style.display = 'flex';
       this.errorMessage.textContent = '';
       this.fileInput.disabled = false;
       this.uploadBar.classList.remove('max-files');
-    } else if (this.selectedFiles.length === this.MAX_FILES) {
+    } else if (!this.isProcessing && this.selectedFiles.length === this.MAX_FILES) {
       // 3 images: hide attachment, show send button, show error
       this.attachLabel.style.display = 'none';
       this.sendButton.style.display = 'flex';
@@ -88,6 +99,8 @@ class UploadManager {
       const removeBtn = document.createElement('button');
       removeBtn.className = 'thumbnail-remove';
       removeBtn.textContent = '✕';
+      removeBtn.disabled = this.isProcessing;
+      removeBtn.style.display = this.isProcessing ? 'none' : 'flex';
       removeBtn.onclick = (e) => {
         e.stopPropagation();
         this.removeFile(index);
@@ -131,11 +144,17 @@ class UploadManager {
   reset() {
     this.selectedFiles = [];
     this.uploadedImageURLs = [];
+    this.isProcessing = false;
     this.updateThumbnails();
   }
 
   hasFiles() {
     return this.selectedFiles.length > 0;
+  }
+
+  setProcessingState(isProcessing) {
+    this.isProcessing = isProcessing;
+    this.updateThumbnails();
   }
 }
 
